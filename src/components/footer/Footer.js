@@ -9,7 +9,6 @@ import { useFormik } from "formik";
 import { optinSchema } from "../../schemas";
 
 export default function Footer() {
-  const [footerdata, setFooterdata] = useState([]);
   const [footertag, setFootertag] = useState([]);
   const [sociallinks, setSociallinks] = useState([]);
   const [trustBadges, setTrustBadges] = useState([]);
@@ -17,7 +16,6 @@ export default function Footer() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getRelatedStaticText("footerdata").then((t) => setFooterdata(t.data));
     getRelatedStaticText("footertag").then((t) => setFootertag(t.data));
     getRelatedStaticText("footerSocialLink").then((res) =>
       setSociallinks(res.data)
