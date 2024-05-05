@@ -217,7 +217,7 @@ const App = () => {
             handleRetry={handleRetry}
           />
           <ScrollToTop />
-          {/* <Header /> */}
+          <Header />
           <Toaster />
           <GoToTop />
           <Switch>
@@ -352,7 +352,7 @@ const App = () => {
             <Route exact path="*" component={NotFound} />
             <Route component={NotFound} />
           </Switch>
-          {/* <Footer /> */}
+          <Footer />
         </Router>
       </SkeletonTheme>
     </Suspense>
