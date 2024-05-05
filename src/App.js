@@ -162,6 +162,15 @@ const App = () => {
     };
   }, []);
 
+  useEffect(() => {
+    import("antd/dist/antd.css").then((module) => {
+      // Inject the CSS into the page
+      const node = document.createElement("style");
+      node.innerHTML = module.default;
+      document.head.appendChild(node);
+    });
+  }, []);
+
   const handleRetry = async (e) => {
     // e.preventDefault();
   };
