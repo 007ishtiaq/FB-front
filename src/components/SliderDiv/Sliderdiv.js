@@ -10,22 +10,36 @@ import Banners from "./SmallBanners/Banners";
 export default function () {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     getCategoriesslider().then((res) => {
       setLoading(false);
       setCategories(res.data);
     });
-  }, []);
+
+    // Check if the screen width is less than 700px
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 700);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [window.innerWidth]);
 
   return (
     <>
-      <div class="sliderdiv">
-        <CategoriesPanal loading={loading} Categories={categories} />
-        <div class="slidercenterdiv">
+      <div className="sliderdiv">
+        {!isMobile && (
+          <CategoriesPanal loading={loading} Categories={categories} />
+        )}
+        <div className="slidercenterdiv">
           <Slider />
         </div>
-        <Banners />
+        {!isMobile && <Banners />}
       </div>
     </>
   );

@@ -14,7 +14,6 @@ import "./Login.css";
 import { useFormik } from "formik";
 import { loginSchema } from "../../schemas";
 import NoNetModal from "../../components/NoNetModal/NoNetModal";
-// import PhoneAuth from "./PhoneAuth";
 
 const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -389,8 +388,6 @@ const Login = ({ history }) => {
                 </div>
               </form>
             </div>
-
-            {/* <PhoneAuth /> */}
 
             <NoNetModal
               classDisplay={`${noNetModal && "open-popup"}`}

@@ -21,8 +21,8 @@ const BannerImgUpload = ({
         files[0],
         1152,
         1152,
-        "PNG",
-        100,
+        "WebP",
+        50,
         0,
         (uri) => {
           // console.log(uri);

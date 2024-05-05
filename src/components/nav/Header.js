@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import "./Header.css";
-import { Menu, Badge } from "antd";
+import { Badge } from "antd";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
 import { Detector } from "react-detect-offline";
@@ -11,27 +11,16 @@ import { ReactComponent as Logosvg } from "../../images/headersvgs/pearllogo.svg
 import { ReactComponent as Pearlytouchtxt } from "../../images/headersvgs/pearlytouch.svg";
 import { ReactComponent as Cartsvg } from "../../images/headersvgs/Cartsvg.svg";
 import { ReactComponent as Personsvg } from "../../images/headersvgs/Personsvg.svg";
-// import { ReactComponent as Applesvg } from "../../images/headersvgs/Applesvg.svg";
-import { ReactComponent as Adminsvg } from "../../images/acnav/admin.svg";
-import { ReactComponent as Managesvg } from "../../images/acnav/manage.svg";
-import { ReactComponent as Orderssvg } from "../../images/acnav/orders.svg";
-import { ReactComponent as Reviewssvg } from "../../images/acnav/reviews.svg";
-import { ReactComponent as Wishlistsvg } from "../../images/acnav/wishlist.svg";
-import { ReactComponent as Returnssvg } from "../../images/acnav/returns.svg";
-// import { ReactComponent as Catecornersvg } from "../../images/headersvgs/catetopcorner.svg";
 import { getRelatedStaticText } from "../../functions/staticText";
 import BurdermenuSmall from "../SliderDiv/categoriesPanal/BurdermenuSmall";
-import { getCategoriesslider } from "../../functions/category";
 import "../SliderDiv/SliderDiv.css";
-const { SubMenu, Item } = Menu;
 
 const Header = () => {
-  const [current, setCurrent] = useState("home");
   const [staticTexts, setStaticTexts] = useState([]);
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
-  const [categories, setCategories] = useState([]);
   const [netconnection, setNetconnection] = useState(true);
   const [hideOnlineText, setHideOnlineText] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   let dispatch = useDispatch();
   let { user, cart } = useSelector((state) => ({ ...state }));
@@ -56,19 +45,19 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    getRelatedStaticText("topcouponbar").then((t) => setStaticTexts(t.data));
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  const handleClick = (e) => {
-    // console.log(e.key);
-    setCurrent(e.key);
-  };
-
   useEffect(() => {
-    getCategoriesslider().then((res) => {
-      setCategories(res.data);
-      // console.log(res.data);
-    });
+    getRelatedStaticText("topcouponbar").then((t) => setStaticTexts(t.data));
   }, []);
 
   const logout = () => {
@@ -110,6 +99,8 @@ const Header = () => {
     return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
   };
 
+  const AccountDropdown = lazy(() => import("./AccountDropdown"));
+
   return (
     <>
       <div class="headermain">
@@ -136,7 +127,7 @@ const Header = () => {
         <div id="Mainheader" className="middlemainheader">
           <div class="middle-header">
             <div class="binder">
-              <BurdermenuSmall />
+              {windowWidth <= 700 && <BurdermenuSmall />}
               <Link to="/">
                 <div class="logodiv">
                   <div class="logo-svgsize">
@@ -201,80 +192,9 @@ const Header = () => {
                     <Personsvg />
                   </div>
                   {showAccountDropdown && (
-                    <div id="accountdiv" class="accountlistdiv">
-                      <div class="accountlist">
-                        <div class="accountlistbtndiv">
-                          {user && (
-                            <Link to="" class="accountlistbtn" onClick={logout}>
-                              <span>Logout</span>{" "}
-                            </Link>
-                          )}
-                        </div>
-
-                        {user && (
-                          <dv>
-                            {user && user.role === "admin" && (
-                              <>
-                                <Link
-                                  to="/AdminPanel?page=AdminDashboard"
-                                  class="accountlistlinks"
-                                >
-                                  <div className="acsvg">
-                                    <Adminsvg />
-                                  </div>
-                                  Admin Dashboard
-                                </Link>
-                              </>
-                            )}
-                            <Link
-                              to="/ManageMyAc?page=Manageac"
-                              class="accountlistlinks"
-                            >
-                              <div className="acsvg">
-                                <Managesvg />
-                              </div>
-                              Manage My Acccount
-                            </Link>
-                            <Link
-                              to="/ManageMyAc?page=userOrders"
-                              class="accountlistlinks"
-                            >
-                              <div className="acsvg">
-                                <Orderssvg />
-                              </div>
-                              My Orders
-                            </Link>
-                            <Link
-                              to="/ManageMyAc?page=userReviews"
-                              class="accountlistlinks"
-                            >
-                              <div className="acsvg">
-                                <Reviewssvg />
-                              </div>
-                              My Reviews
-                            </Link>
-                            <Link
-                              to="/ManageMyAc?page=userWishlist"
-                              class="accountlistlinks"
-                            >
-                              <div className="acsvg">
-                                <Wishlistsvg />
-                              </div>
-                              My Wishlist
-                            </Link>
-                            <Link
-                              to="/ManageMyAc?page=userCancellations"
-                              class="accountlistlinks"
-                            >
-                              <div className="acsvg">
-                                <Returnssvg />
-                              </div>
-                              My Returns & Cancellations
-                            </Link>
-                          </dv>
-                        )}
-                      </div>
-                    </div>
+                    <Suspense fallback={" "}>
+                      <AccountDropdown user={user} logout={logout} />
+                    </Suspense>
                   )}
                 </div>
               )}

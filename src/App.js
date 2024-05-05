@@ -51,7 +51,6 @@ import GoToTop from "./components/Scroll/GoToTop";
 // import Cart from "./pages/Cart";
 // import Checkout from "./pages/Checkout";
 // import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
-// import Payment from "./pages/Payment";
 
 // using lazy
 const Login = lazy(() => import("./pages/auth/Login"));
@@ -135,7 +134,6 @@ const CreateCouponPage = lazy(() =>
 const CreateShippingPage = lazy(() =>
   import("./pages/admin/shipping/CreateShippingPage")
 );
-const Payment = lazy(() => import("./pages/Payment"));
 
 const App = () => {
   const [noNetModalshow, setNoNetModalshow] = useState(false);
@@ -268,7 +266,6 @@ const App = () => {
 
             {/* User protected Routes */}
 
-            <UserRoute exact path="/payment" component={Payment} />
             <UserRoute exact path="/checkout" component={Checkout} />
             <UserRoute
               exact

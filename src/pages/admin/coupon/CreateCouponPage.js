@@ -6,9 +6,7 @@ import {
   removeCoupon,
   createCoupon,
 } from "../../../functions/coupon";
-import "react-datepicker/dist/react-datepicker.css";
 import { DeleteOutlined } from "@ant-design/icons";
-import AdminNav from "../../../components/nav/AdminNav";
 
 const CreateCouponPage = () => {
   const [name, setName] = useState("");

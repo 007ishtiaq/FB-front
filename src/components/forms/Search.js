@@ -30,6 +30,8 @@ const Search = () => {
         </div>
         <div class="inputdiv">
           <input
+            id="search-input"
+            name="search-input"
             onChange={handleChange}
             class="searchinput"
             type="search"

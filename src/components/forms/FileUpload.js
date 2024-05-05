@@ -20,8 +20,8 @@ const FileUpload = ({ values, setValues, setLoading }) => {
           files[i],
           720,
           720,
-          "JPEG",
-          100,
+          "WebP",
+          70,
           0,
           (uri) => {
             // console.log("imageURI", uri);

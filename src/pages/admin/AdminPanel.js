@@ -8,7 +8,6 @@ import ReturnedOrders from "./AdminDashboard/ReturnedOrders";
 import RejectedOrders from "./AdminDashboard/RejectedOrders";
 import AllProducts from "./product/AllProducts";
 import ProductCreate from "./product/ProductCreate";
-import Stocks from "./product/Stocks";
 import FlashSale from "./product/FlashSale";
 import CategoryCreate from "./category/CategoryCreate";
 import SubCreate from "./sub/SubCreate";
@@ -47,7 +46,6 @@ export default function AdminPanel() {
           {query.get("page") === "RejectedOrders" && <RejectedOrders />}
           {query.get("page") === "AllProducts" && <AllProducts />}
           {query.get("page") === "ProductCreate" && <ProductCreate />}
-          {query.get("page") === "Stocks" && <Stocks />}
           {query.get("page") === "FlashSale" && <FlashSale />}
           {query.get("page") === "CategoryCreate" && <CategoryCreate />}
           {query.get("page") === "SubCreate" && <SubCreate />}

@@ -24,8 +24,8 @@ const CategoryImgupload = ({
         files[0],
         720,
         720,
-        "JPEG",
-        100,
+        "WebP",
+        50,
         0,
         (uri) => {
           // console.log(uri);

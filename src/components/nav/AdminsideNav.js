@@ -113,9 +113,6 @@ export default function AdminsideNav() {
         <Link to="/AdminPanel?page=ProductCreate">
           <li class="manageacli clsremove ProductCreate">Create Product</li>
         </Link>
-        <Link to="/AdminPanel?page=Stocks">
-          <li class="manageacli clsremove Stocks">Stocks</li>
-        </Link>
         <Link to="/AdminPanel?page=FlashSale">
           <li class="manageacli clsremove FlashSale">Flash sale</li>
         </Link>
