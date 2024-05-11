@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./GoToTop.css";
-import { FaArrowUp } from "react-icons/fa";
+import { ReactComponent as Arrowupsvg } from "../../images/homepage/arrowup.svg";
 
 const GoToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,7 +35,7 @@ const GoToTop = () => {
     <div className="topbtncont">
       {isVisible && (
         <div className={`top-btn ${btnActive && "active"}`} onClick={goToBtn}>
-          <FaArrowUp className="errowupicon" />
+          <Arrowupsvg className="errowupicon" />
         </div>
       )}
     </div>

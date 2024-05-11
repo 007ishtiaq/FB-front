@@ -39,6 +39,9 @@
 
 .errowupicon {
   animation: gotopanim 0.8s linear infinite alternate-reverse;
+  fill: white;
+  width: 2.7rem;
+  height: auto;
 }
 
 @keyframes gotopanim {
