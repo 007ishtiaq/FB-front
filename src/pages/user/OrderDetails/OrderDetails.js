@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import "../SingleOrder.css";
 import "../MyOrders.css";
 import "../ManageMyAcccount.css";
 import { getOrder } from "../../../functions/user";
 import { useSelector } from "react-redux";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import Invoice from "../../../components/order/Invoice";
 import UsersideNavCopy from "../../../components/nav/UsersideNavCopy";
-import { Card, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import { useHistory } from "react-router-dom";
 import Model from "../../../components/Model/Model";
 import NoNetModal from "../../../components/NoNetModal/NoNetModal";
@@ -24,7 +21,6 @@ export default function OrderDetails({ match }) {
 
   const { user } = useSelector((state) => ({ ...state }));
   const { id } = match.params;
-  const dispatch = useDispatch();
 
   let history = useHistory();
 
@@ -85,18 +81,6 @@ export default function OrderDetails({ match }) {
       }, 0)
     );
   };
-
-  function showDate(orderDate) {
-    const date = new Date(orderDate);
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    const formattedDate = date.toLocaleDateString("en-US", options);
-    return formattedDate;
-  }
 
   const activeLevel1 = () => {
     if (order.orderStatus === "Not Processed") {
@@ -161,15 +145,6 @@ export default function OrderDetails({ match }) {
     }
   };
 
-  const showDownloadLink = (order) => (
-    <PDFDownloadLink
-      document={<Invoice order={order} email={user.email} />}
-      fileName="invoice.pdf"
-      className="downloadorder vieworderbtn"
-    >
-      Download Receipt PDF
-    </PDFDownloadLink>
-  );
   const ItemCancel = (itemId) => {
     if (navigator.onLine) {
       if (user && user.token) {
@@ -215,7 +190,6 @@ export default function OrderDetails({ match }) {
                       Placed On: {new Date(order.createdAt).toLocaleString()}
                     </div>
                   </div>
-                  <div>{showDownloadLink(order)}</div>
                 </div>
                 <div class="ordersub">
                   <div class="orderstatusbarcont">

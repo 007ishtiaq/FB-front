@@ -25,18 +25,9 @@ import ItemActioninfoModel from "../../../components/modal/ItemActioninfoModel";
 import Model from "../../../components/Model/Model";
 import ItemActionDetails from "../../../components/itemActionDetails/ItemActionDetails";
 import Switch from "../../../components/Switch/Switch";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import Invoice from "../../../components/order/Invoice";
 
 export default function OrderDetail({ match }) {
   const [order, setOrder] = useState("");
-  //for address edit modal & system
-  const [address, setAddress] = useState("");
-  const [modalVisibleAdress, setModalVisibleAdress] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  //for Email edit modal & system
-  const [email, setEmail] = useState("");
-  const [modalVisibleEmail, setModalVisibleEmail] = useState(false);
   //for deposit slip modal
   const [showModel, setshowModel] = useState(false);
   //for User Item Action model cancels
@@ -306,16 +297,6 @@ export default function OrderDetail({ match }) {
         toast.error(`Order Back Deliver failed`);
         console.error(error);
       });
-  };
-
-  const showDownloadLink = () => {
-    // <PDFDownloadLink
-    //   document={<Invoice order={order} email={user.email} />}
-    //   fileName="invoice.pdf"
-    //   className="mybtn btnprimary"
-    // >
-    //   Download Receipt PDF
-    // </PDFDownloadLink>;
   };
 
   const Navigatorhandler = () => {
@@ -860,7 +841,6 @@ export default function OrderDetail({ match }) {
                     <button class="mybtn btnprimary">
                       Send Invoice via Email
                     </button>
-                    <div>{showDownloadLink()}</div>
                   </div>
                 </div>
               </div>

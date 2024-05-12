@@ -1,35 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { lazy, Suspense } from "react";
+
+const CategoriesCard = lazy(() =>
+  import("../components/categoriesCard/CategoriesCard")
+);
+const Sliderdiv = lazy(() => import("../components/SliderDiv/Sliderdiv"));
+const ProductsGroup = lazy(() =>
+  import("../components/productsSlidable/productGroup/ProductsGroup")
+);
+const CommonProductsCont = lazy(() =>
+  import("../components/CommonProductsCont/CommonProductsCont")
+);
+const BrandsCard = lazy(() => import("../components/brandsCard/BrandsCard"));
 
 const Home = () => {
-  const [loadedComponents, setLoadedComponents] = useState([]);
-
-  useEffect(() => {
-    const loadComponent = async (component) => {
-      const { default: LazyLoadedComponent } = await component();
-      setLoadedComponents((prevComponents) => [
-        ...prevComponents,
-        <LazyLoadedComponent key={loadedComponents.length} />,
-      ]);
-    };
-
-    const componentsToLoad = [
-      () => import("../components/categoriesCard/CategoriesCard"),
-      () => import("../components/SliderDiv/Sliderdiv"),
-      () => import("../components/productsSlidable/productGroup/ProductsGroup"),
-      () => import("../components/CommonProductsCont/CommonProductsCont"),
-      () => import("../components/brandsCard/BrandsCard"),
-    ];
-
-    const loadComponentsSequentially = async () => {
-      for (const component of componentsToLoad) {
-        await loadComponent(component);
-      }
-    };
-
-    loadComponentsSequentially();
-  }, []);
-
-  return <div className="centercont">{loadedComponents}</div>;
+  return (
+    <div className="centercont">
+      <Suspense fallback={<div>Loading...</div>}>
+        <CategoriesCard />
+        <Sliderdiv />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProductsGroup />
+        <CommonProductsCont WidthIdea={"Fullwidth"} />
+        <BrandsCard />
+      </Suspense>
+    </div>
+  );
 };
 
 export default Home;
