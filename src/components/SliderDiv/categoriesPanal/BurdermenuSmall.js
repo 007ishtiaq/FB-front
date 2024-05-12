@@ -1,7 +1,6 @@
 import React, { useState, Suspense, lazy } from "react";
 import "./BurdermenuSmall.css";
 import Burdermenu from "../../Burgermenu/Burdermeun";
-import NavItemes from "../../navItems/NavItemes";
 
 //small size left drawer - all components here
 const BurdermenuSmall = () => {
@@ -21,9 +20,7 @@ const BurdermenuSmall = () => {
       <div className="SmallDevices">
         <Burdermenu click={toggle} />
         <Suspense fallback={" "}>
-          <SideDrawer Open={SideDrawervisible} close={close}>
-            <NavItemes />
-          </SideDrawer>
+          <SideDrawer Open={SideDrawervisible} close={close}></SideDrawer>
         </Suspense>
       </div>
     </>
