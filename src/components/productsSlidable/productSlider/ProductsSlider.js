@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ArrowRightOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import classes from "./ProductsSlider.module.css";
 
 const ProductsSlider = ({ children, containerwidth, elementwidth, step }) => {
@@ -46,7 +47,9 @@ const ProductsSlider = ({ children, containerwidth, elementwidth, step }) => {
           handleArrow("right");
         }}
         style={{ visibility: rightdistance > 0 ? "visible" : "hidden" }}
-      ></div>
+      >
+        <ArrowRightOutlined style={{ fontSize: "12px" }} />
+      </div>
       <div
         className={classes.sliderContent}
         style={{ transform: `translateX(${-distance}px)` }}
@@ -59,7 +62,9 @@ const ProductsSlider = ({ children, containerwidth, elementwidth, step }) => {
           handleArrow("left");
         }}
         style={{ visibility: leftdistance > 0 ? "visible" : "hidden" }}
-      ></div>
+      >
+        <ArrowLeftOutlined style={{ fontSize: "12px" }} />
+      </div>
     </div>
   );
 };

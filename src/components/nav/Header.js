@@ -1,6 +1,9 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import "./Header.css";
+import { Badge } from "antd";
 import { Link } from "react-router-dom";
+import firebase from "firebase/app"; // Import only the core Firebase module
+import "firebase/auth"; // Import the Firebase Authentication module
 import { Detector } from "react-detect-offline";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -57,6 +60,19 @@ const Header = () => {
   useEffect(() => {
     getRelatedStaticText("topcouponbar").then((t) => setStaticTexts(t.data));
   }, []);
+
+  const logout = () => {
+    firebase.auth().signOut();
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
+    dispatch({
+      type: "CLEAR_WISHLIST",
+      payload: null,
+    });
+    history.push("/login");
+  };
 
   function copyToClipboard() {
     var textToCopy = document.querySelector(".top_tag_Center strong").innerText;
@@ -178,13 +194,37 @@ const Header = () => {
                   </div>
                   {showAccountDropdown && (
                     <Suspense fallback={" "}>
-                      <AccountDropdown user={user} logout={123} />
+                      <AccountDropdown user={user} logout={logout} />
                     </Suspense>
                   )}
                 </div>
               )}
               <div id="cartbtn" class="cartbtndiv">
-                <Link to="/cart"></Link>
+                <Link to="/cart">
+                  <Badge count={cart.length} offset={[-3, 8]}>
+                    <>
+                      <div className="noauthbig">
+                        <div id="carthoverdiv">
+                          <div className="cartsvg">
+                            <Cartsvg />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="noauthmediam">
+                        <div className="noauthcont">
+                          <Link to="/cart">
+                            <button className="noauthbtn">
+                              <div className="noauthsvg">
+                                <Cartsvg />
+                              </div>
+                              <p> Cart </p>
+                            </button>
+                          </Link>
+                        </div>
+                      </div>
+                    </>
+                  </Badge>
+                </Link>
               </div>
             </div>
           </div>

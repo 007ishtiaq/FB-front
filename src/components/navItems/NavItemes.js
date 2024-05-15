@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import firebase from "firebase/app"; // Import only the core Firebase module
+import "firebase/auth"; // Import the Firebase Authentication module
 import { NavLink } from "react-router-dom";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import classes from "./NavItemes.module.css";
@@ -67,6 +69,19 @@ const NavItemes = () => {
 
   const handleSubMenuOpenChange = (keys) => {
     setOpenKeys(keys);
+  };
+
+  const logout = () => {
+    firebase.auth().signOut();
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
+    dispatch({
+      type: "CLEAR_WISHLIST",
+      payload: null,
+    });
+    history.push("/login");
   };
 
   return (
@@ -182,7 +197,7 @@ const NavItemes = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="" activeClassName={classes.active} onClick={}>
+            <NavLink to="" activeClassName={classes.active} onClick={logout}>
               <p> Logout</p> <LogoutOutlined className={classes.Icon} />{" "}
             </NavLink>
           </li>

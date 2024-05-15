@@ -1,8 +1,9 @@
 import React from "react";
 import { Card } from "antd";
 import laptop from "../../images/laptop.png";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { ReactComponent as Editsvg } from "../../images/edit.svg";
+import { ReactComponent as Deletesvg } from "../../images/delete.svg";
 
 const { Meta } = Card;
 
@@ -21,11 +22,11 @@ const AdminProductCard = ({ product, handleRemove }) => {
       }
       actions={[
         <Link to={`/admin/product/${slug}`}>
-          <EditOutlined className="text-warning" />
+          <Editsvg className="smallsvgbtn" />
         </Link>,
-        <DeleteOutlined
+        <Deletesvg
           onClick={() => handleRemove(slug)}
-          className="text-danger"
+          className="smallsvgbtn"
         />,
       ]}
     >

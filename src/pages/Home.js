@@ -1,30 +1,21 @@
-import React, { lazy, Suspense } from "react";
-
-const CategoriesCard = lazy(() =>
-  import("../components/categoriesCard/CategoriesCard")
-);
-const Sliderdiv = lazy(() => import("../components/SliderDiv/Sliderdiv"));
-const ProductsGroup = lazy(() =>
-  import("../components/productsSlidable/productGroup/ProductsGroup")
-);
-const CommonProductsCont = lazy(() =>
-  import("../components/CommonProductsCont/CommonProductsCont")
-);
-const BrandsCard = lazy(() => import("../components/brandsCard/BrandsCard"));
+import React from "react";
+import Sliderdiv from "../components/SliderDiv/Sliderdiv";
+import ProductsGroup from "../components/productsSlidable/productGroup/ProductsGroup";
+import CommonProductsCont from "../components/CommonProductsCont/CommonProductsCont";
+import CategoriesCard from "../components/categoriesCard/CategoriesCard";
+import BrandsCard from "../components/brandsCard/BrandsCard";
 
 const Home = () => {
   return (
-    <div className="centercont">
-      <Suspense fallback={<div>Loading...</div>}>
+    <>
+      <div className="centercont">
         <CategoriesCard />
         <Sliderdiv />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
         <ProductsGroup />
         <CommonProductsCont WidthIdea={"Fullwidth"} />
         <BrandsCard />
-      </Suspense>
-    </div>
+      </div>
+    </>
   );
 };
 

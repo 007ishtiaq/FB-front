@@ -161,6 +161,12 @@
 .noadrtext {
   font-size: 1.3rem;
 }
+.smallsvgbtn {
+  display: block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 /* ***************************************
 **************Responsiveness***********
 *************************************** */

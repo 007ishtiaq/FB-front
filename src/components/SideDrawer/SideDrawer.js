@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./SideDrawer.css";
 import { Link } from "react-router-dom";
 import Backdrop from "../Backdrop/Backdrop";
+import { CloseOutlined } from "@ant-design/icons";
 import { ReactComponent as Logosvg } from "../../images/headersvgs/pearllogo.svg";
 import { ReactComponent as Pearlytouchtxt } from "../../images/headersvgs/pearlytouch.svg";
 import { ReactComponent as Tickchecksvg } from "../../images/manageacUser/tickcheck.svg";
@@ -28,6 +29,7 @@ export default function SideDrawer(props) {
                   <Pearlytouchtxt />
                 </div>
               </div>
+              <CloseOutlined onClick={props.close} className="clear" />
             </div>
             <div className="sidedrawergreet">
               {user && user.name ? (

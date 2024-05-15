@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import _ from "lodash";
 import Laptop from "../../images/laptop.png";
+import { Card } from "antd";
 import { showAverage } from "../../functions/rating";
 import { toast } from "react-hot-toast";
 import Skeleton from "react-loading-skeleton";
@@ -128,7 +129,9 @@ const FlashsaleProductCard = ({
             )}
           </>
         ) : (
-          <span className={product.quantity < 1 && "imgstockout"}></span>
+          <span className={product.quantity < 1 && "imgstockout"}>
+            <Card cover={<img src={Laptop} />}></Card>
+          </span>
         )}
       </Link>
       <div class="textpart">
