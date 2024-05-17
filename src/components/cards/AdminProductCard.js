@@ -22,12 +22,16 @@ const AdminProductCard = ({ product, handleRemove }) => {
       }
       actions={[
         <Link to={`/admin/product/${slug}`}>
-          <Editsvg className="smallsvgbtn" />
+          <div className="smallsvgbtncont">
+            <Editsvg className="smallsvgbtn" />
+          </div>
         </Link>,
-        <Deletesvg
-          onClick={() => handleRemove(slug)}
-          className="smallsvgbtn"
-        />,
+        <div className="smallsvgbtncont">
+          <Deletesvg
+            onClick={() => handleRemove(slug)}
+            className="smallsvgbtn"
+          />
+        </div>,
       ]}
     >
       <Meta

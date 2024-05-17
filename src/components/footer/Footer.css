@@ -6,7 +6,7 @@ footer {
 
 /* ------footer top area----- */
 .optinouter {
-  background-color: #001464;
+  background-color: #000000;
 }
 .newsletter {
   max-width: 118.4rem;
@@ -108,7 +108,7 @@ footer {
 
 /* -------footer main / center area-------  */
 .footerouter {
-  background: linear-gradient(90deg, #0d3c9f, #040d70);
+  background: linear-gradient(90deg, #1e1e1e, #000000);
 }
 .footercol {
   max-width: 118.4rem;

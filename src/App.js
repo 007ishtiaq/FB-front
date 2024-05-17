@@ -125,11 +125,19 @@ const App = () => {
 
   useEffect(() => {
     import("antd/dist/antd.css").then((module) => {
-      // Inject the CSS into the page
       const node = document.createElement("style");
       node.innerHTML = module.default;
       document.head.appendChild(node);
     });
+    // Fetch and append boot.css from public folder
+    fetch("/boot.css")
+      .then((response) => response.text())
+      .then((css) => {
+        const node = document.createElement("style");
+        node.innerHTML = css;
+        document.head.appendChild(node);
+      })
+      .catch((error) => console.error("Error loading boot.css:", error));
   }, []);
 
   const handleRetry = async (e) => {

@@ -161,6 +161,11 @@
 .noadrtext {
   font-size: 1.3rem;
 }
+.smallsvgbtncont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .smallsvgbtn {
   display: block;
   width: 20px;
