@@ -3,7 +3,6 @@ footer {
   user-select: none;
   width: 100%;
 }
-
 /* ------footer top area----- */
 .optinouter {
   background-color: #000000;
@@ -132,16 +131,15 @@ footer {
   display: flex;
   justify-content: start;
   align-items: center;
-  padding-bottom: 1.5rem;
+  padding-bottom: 2.5rem;
 }
 .footer-logo .logo-svgsize svg:first-child {
-  width: 3.5rem;
-  padding-bottom: 0.7rem;
+  width: 3.8rem;
 }
 .footer-logo svg:last-child {
   fill: var(--logotxt-footer-gray);
-  width: 21.5rem;
-  margin-left: 0.4rem;
+  width: 28rem;
+  margin-left: 1rem;
 }
 .footer-site-desc {
   margin-bottom: 3rem;

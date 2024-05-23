@@ -8,8 +8,8 @@ import { Detector } from "react-detect-offline";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Search from "../forms/Search";
-import { ReactComponent as Logosvg } from "../../images/headersvgs/pearllogo.svg";
-import { ReactComponent as Pearlytouchtxt } from "../../images/headersvgs/pearlytouch.svg";
+import { ReactComponent as Logosign } from "../../images/headersvgs/logosign.svg";
+import { ReactComponent as Logotextblack } from "../../images/headersvgs/logotextblack.svg";
 import { ReactComponent as Cartsvg } from "../../images/headersvgs/Cartsvg.svg";
 import { ReactComponent as Personsvg } from "../../images/headersvgs/Personsvg.svg";
 import { getRelatedStaticText } from "../../functions/staticText";
@@ -132,10 +132,10 @@ const Header = () => {
               <Link to="/">
                 <div class="logodiv">
                   <div class="logo-svgsize">
-                    <Logosvg />
+                    <Logosign />
                   </div>
                   <div class="logo-txtsize">
-                    <Pearlytouchtxt />
+                    <Logotextblack />
                   </div>
                 </div>
               </Link>

@@ -2,7 +2,6 @@ import React, { useEffect, lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { getWishlist } from "./functions/user";
-import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { currentUser } from "./functions/auth";
 import Footer from "./components/footer/Footer";
@@ -146,12 +145,16 @@ const App = () => {
 
   // to check firebase auth state
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const idTokenResult = await user.getIdTokenResult();
+    let unsubscribe;
 
-        currentUser(idTokenResult.token)
-          .then((res) => {
+    const loadAuthModule = async () => {
+      const { auth } = await import("./firebase");
+      unsubscribe = auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          const idTokenResult = await user.getIdTokenResult();
+
+          try {
+            const res = await currentUser(idTokenResult.token);
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
@@ -162,19 +165,27 @@ const App = () => {
                 _id: res.data._id,
               },
             });
-          })
-          .catch((err) => console.log(err));
 
-        getWishlist(idTokenResult.token).then((res) => {
-          dispatch({
-            type: "USER_WISHLIST",
-            payload: res.data.wishlist,
-          });
-        });
+            const wishlistRes = await getWishlist(idTokenResult.token);
+            dispatch({
+              type: "USER_WISHLIST",
+              payload: wishlistRes.data.wishlist,
+            });
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      });
+    };
+
+    loadAuthModule();
+
+    // Cleanup
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
       }
-    });
-    // cleanup
-    return () => unsubscribe();
+    };
   }, [dispatch]);
 
   return (
