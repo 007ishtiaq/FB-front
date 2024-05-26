@@ -15,9 +15,13 @@ import { ReactComponent as Personsvg } from "../../images/headersvgs/Personsvg.s
 import { getRelatedStaticText } from "../../functions/staticText";
 import BurdermenuSmall from "../SliderDiv/categoriesPanal/BurdermenuSmall";
 import "../SliderDiv/SliderDiv.css";
+import { ReactComponent as Callsvg } from "../../images/contactUs/calloutlined.svg";
+import { ReactComponent as Mailsvg } from "../../images/contactUs/mail.svg";
+import { ReactComponent as Helpsvg } from "../../images/headersvgs/help.svg";
 
 const Header = () => {
   const [staticTexts, setStaticTexts] = useState([]);
+  const [contactinfo, setContactinfo] = useState([]);
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
   const [netconnection, setNetconnection] = useState(true);
   const [hideOnlineText, setHideOnlineText] = useState(true);
@@ -59,6 +63,7 @@ const Header = () => {
 
   useEffect(() => {
     getRelatedStaticText("topcouponbar").then((t) => setStaticTexts(t.data));
+    getRelatedStaticText("contactpageinfo").then((t) => setContactinfo(t.data));
   }, []);
 
   const logout = () => {
@@ -106,12 +111,7 @@ const Header = () => {
     <>
       <div class="headermain">
         <div class="top-header">
-          <div class="newsleft">
-            <Link to="/HelpCenter">
-              <p class="top_tag_Right"> Help Center</p>
-            </Link>
-          </div>
-          <div class="newscenter">
+          <div class="newsleft helperlinkcont">
             <p class="top_tag_Center" onClick={copyToClipboard}>
               {htmlToRender(
                 staticTexts && staticTexts.length > 0 && staticTexts[0].info1
@@ -119,8 +119,21 @@ const Header = () => {
             </p>
           </div>
           <div class="newsright">
-            <Link to="/ContactUs">
+            <div className="helperlinkcont">
+              <Callsvg></Callsvg>
+              <p className="top_tag_Right">
+                {contactinfo && contactinfo.length > 0 && contactinfo[0].info1}
+              </p>
+            </div>
+            <div className="seprator">{"|"}</div>
+            <Link to="/ContactUs" className="helperlinkcont">
+              <Mailsvg className="mailsvgcont"></Mailsvg>
               <p class="top_tag_Right">Contact Now </p>
+            </Link>
+            <div className="seprator">{"|"}</div>
+            <Link to="/HelpCenter" className="helperlinkcont">
+              <Helpsvg></Helpsvg>
+              <p class="top_tag_Right"> Help Center</p>
             </Link>
           </div>
         </div>

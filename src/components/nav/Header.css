@@ -20,14 +20,47 @@
   margin-left: auto;
   margin-right: auto;
 }
+.seprator {
+  margin: 0 1rem;
+}
+
+.helperlinkcont {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+  user-select: none;
+  cursor: pointer;
+}
+.helperlinkcont svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  transition: all 0.2s linear;
+  fill: rgb(80, 80, 80);
+}
+.helperlinkcont .mailsvgcont {
+  width: 2rem;
+  height: 2rem;
+}
+.helperlinkcont:hover svg {
+  fill: var(--org-primary);
+}
+.helperlinkcont p {
+  color: var(--grydark-topbar-text);
+  transition: all 0.2s linear;
+}
+.helperlinkcont:hover p {
+  color: var(--org-primary);
+}
 /* -------top header > news left----- */
 .newsleft {
   display: flex;
   align-items: center;
   justify-content: start;
   width: 100%;
-  max-width: 25%;
+  max-width: 50%;
   padding-left: 1rem;
+  cursor: pointer;
 }
 .newsleft a {
   display: flex;
@@ -46,26 +79,15 @@
 .logo-svg-small svg path {
   fill: var(--org-primary);
 }
-/* -------top header > news center----- */
-.newscenter {
-  text-align: center;
-  width: 100%;
-  max-width: 50%;
-  cursor: pointer;
-}
-.top_tag_Right {
-  color: var(--grydark-topbar-text);
-}
-.top_tag_Center:hover,
-.top_tag_Right:hover {
-  color: var(--org-primary);
-  transition: all 0.2s linear;
-}
+
 /* -------top header > news Right----- */
 .newsright {
+  display: flex;
+  align-items: center;
+  justify-content: right;
   text-align: right;
   width: 100%;
-  max-width: 25%;
+  max-width: 50%;
   padding-right: 1rem;
   cursor: pointer;
 }
