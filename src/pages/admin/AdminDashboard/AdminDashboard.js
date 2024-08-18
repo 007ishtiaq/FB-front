@@ -45,21 +45,21 @@ const AdminDashboard = () => {
             <p>Today's Revenue</p>
             <h2>
               {DayIncome.toFixed(2)}
-              <span>PKR</span>{" "}
+              <span>$</span>{" "}
             </h2>
           </div>
           <div>
             <p>This Month</p>
             <h2>
               {MonthIncome.toFixed(2)}
-              <span>PKR</span>
+              <span>$</span>
             </h2>
           </div>
           <div>
             <p>This Year</p>
             <h2>
               {YearIncome.toFixed(2)}
-              <span>PKR</span>{" "}
+              <span>$</span>{" "}
             </h2>
           </div>
         </div>

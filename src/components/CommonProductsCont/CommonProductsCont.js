@@ -66,11 +66,11 @@ export default function CommonProductsCont({ WidthIdea }) {
                 <div class="textpart">
                   <div class="Pricediv">
                     <div class="dis p-side">
-                      PKR <span>279</span>.06
+                      $ <span>279</span>.06
                     </div>
                     <div class="d-persontage">-79%</div>
                   </div>
-                  <div class="dis-side">PKR 456.64</div>
+                  <div class="dis-side">$ 456.64</div>
                   <div class="n-side">
                     {" "}
                     <span>

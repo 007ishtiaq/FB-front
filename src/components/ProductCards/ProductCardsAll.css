@@ -108,6 +108,11 @@
   color: rgb(253, 56, 79);
   font-weight: 600;
 }
+.freeitem {
+  font-size: var(--fontsize-small);
+  color: rgb(253, 56, 79);
+  font-weight: 600;
+}
 .p-side {
   font-size: var(--fontsize-small);
   color: rgb(0, 0, 0);

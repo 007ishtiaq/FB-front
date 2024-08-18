@@ -90,14 +90,14 @@ export default function Transectiontable() {
           onChange={handleChange}
         />
         <input
-          placeholder="Debit (PKR)"
+          placeholder="Debit ($)"
           type="number"
           name="Debit"
           value={newentry.Debit}
           onChange={handleChange}
         />
         <input
-          placeholder="Credit (PKR)"
+          placeholder="Credit ($)"
           type="number"
           name="Credit"
           value={newentry.Credit}
@@ -112,9 +112,9 @@ export default function Transectiontable() {
           <tr>
             <th>Date</th>
             <th>Particulars</th>
-            <th>Debit (PKR)</th>
-            <th>Credit (PKR)</th>
-            <th>Balance (PKR)</th>
+            <th>Debit ($)</th>
+            <th>Credit ($)</th>
+            <th>Balance ($)</th>
           </tr>
         </thead>
         <tbody>

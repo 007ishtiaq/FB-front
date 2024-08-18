@@ -120,9 +120,9 @@ const ProductUpdate = ({ match, history }) => {
   };
 
   const handleChange = (e) => {
-    // setValues({ ...values, [e.target.name]: e.target.value });
-    // if (e.target.name === "onSale" && e.target.value === "No")
-    //   setValues({ ...values, onSale: "No", saleTime: "" });
+    setValues({ ...values, [e.target.name]: e.target.value });
+    if (e.target.name === "onSale" && e.target.value === "No")
+      setValues({ ...values, onSale: "No", saleTime: "" });
   };
 
   const handleCategoryChange = (e) => {

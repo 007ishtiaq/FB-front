@@ -130,17 +130,24 @@ const FlashsaleProductCard = ({
           <>
             <div class="Pricediv">
               <div class="dis p-side">
-                PKR <span>{disprice}</span>.00
+                <span>$ {disprice}</span>.00
               </div>
               <div class="d-persontage">
                 -{(100 - (disprice / price) * 100).toFixed(0)}%
               </div>
             </div>
-            <div class="dis-side">PKR {price.toFixed(2)}</div>
+            <div class="dis-side">$ {price.toFixed(2)}</div>
           </>
         ) : (
           <div class="p-side common-p-side">
-            PKR <span>{price}</span>.00
+            {price ? (
+              <>
+                <span>$ {price}</span>
+                .00
+              </>
+            ) : (
+              <span className="freeitem">$ FREE</span>
+            )}
           </div>
         )}
         <div

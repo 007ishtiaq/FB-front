@@ -666,11 +666,11 @@ export default function OrderDetail({ match }) {
                 <div class="ordinfosub ordercalc">
                   <ul>
                     <li>
-                      <span>Products Value:</span> PKR {getTotal()}
+                      <span>Products Value:</span> $ {getTotal()}
                       .00
                     </li>
                     <li>
-                      <span>Delivery Charges: </span>PKR {order.shippingfee}.00
+                      <span>Delivery Charges: </span>$ {order.shippingfee}.00
                     </li>
                     {order && order.paymentIntent.discounted && (
                       <li>
@@ -688,7 +688,7 @@ export default function OrderDetail({ match }) {
                             </div>
                           )}
                         </span>{" "}
-                        | PKR -{order.paymentIntent.discounted}.00
+                        | $ -{order.paymentIntent.discounted}.00
                       </li>
                     )}
                     <li>
