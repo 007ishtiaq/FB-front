@@ -8,14 +8,19 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import SubForm from "../../../components/forms/Subform";
 import LocalSearch from "../../../components/forms/LocalSearch";
+import CategoryImgupload from "../../../components/forms/CategoryImgupload";
+import axios from "axios";
+import Model from "../../../components/Model/Model";
 
 const SubCreate = () => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
+  const [showModels, setShowModels] = useState([]);
   const [subs, setSubs] = useState([]);
   // step 1
   const [keyword, setKeyword] = useState("");
@@ -30,15 +35,22 @@ const SubCreate = () => {
 
   const loadSubs = () => getSubs().then((s) => setSubs(s.data));
 
+  const handleModelToggle = (index) => {
+    const newShowModels = [...showModels];
+    newShowModels[index] = !newShowModels[index];
+    setShowModels(newShowModels);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(name);
     setLoading(true);
-    createSub({ name, parent: category }, user.token)
+    createSub({ name, parent: category, image }, user.token)
       .then((res) => {
         // console.log(res)
         setLoading(false);
         setName("");
+        setImage("");
         toast.success(`"${res.data.name}" is created`);
         loadSubs();
       })
@@ -69,6 +81,28 @@ const SubCreate = () => {
     }
   };
 
+  const handleImageRemove = (public_id) => {
+    setLoading(true);
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/removeimage`,
+        { public_id },
+        {
+          headers: {
+            authtoken: user ? user.token : "",
+          },
+        }
+      )
+      .then((res) => {
+        setLoading(false);
+        setImage("");
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
+
   // step 4
   const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
 
@@ -79,7 +113,14 @@ const SubCreate = () => {
       ) : (
         <h4>Create sub category</h4>
       )}
-
+      <div className="p-3">
+        <CategoryImgupload
+          image={image}
+          setImage={setImage}
+          setLoading={setLoading}
+          handleImageRemove={handleImageRemove}
+        />
+      </div>
       <div className="form-group">
         <label>Parent category</label>
         <select
@@ -96,16 +137,36 @@ const SubCreate = () => {
             ))}
         </select>
       </div>
-
-      <SubForm handleSubmit={handleSubmit} name={name} setName={setName} />
-
+      <SubForm
+        handleSubmit={handleSubmit}
+        name={name}
+        setName={setName}
+        image={image}
+      />
       {/* step 2 and step 3 */}
       <LocalSearch keyword={keyword} setKeyword={setKeyword} />
-
       {/* step 5 */}
-      {subs.filter(searched(keyword)).map((s) => (
+      {subs.filter(searched(keyword)).map((s, index) => (
         <div className="alert alert-secondary" key={s._id}>
-          {s.name} --- {s.slug}
+          {s.name} --- {s.slug}{" "}
+          {s.image && (
+            <span>
+              -----{" "}
+              <Model
+                key={index}
+                show={showModels[index]}
+                closeModel={() => handleModelToggle(index)}
+              >
+                <img className="" src={s.image.url} alt="" />
+              </Model>
+              <img
+                onClick={() => handleModelToggle(index)}
+                style={{ width: "25px", height: "25px", cursor: "pointer" }}
+                src={s.image.url}
+                alt=""
+              />
+            </span>
+          )}
           <span
             onClick={() => handleRemove(s.slug)}
             className="btn btn-sm float-right"

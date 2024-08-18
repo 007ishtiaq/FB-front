@@ -6,11 +6,14 @@ import { getCategories } from "../../../functions/category";
 import { updateSub, getSub } from "../../../functions/sub";
 import SubForm from "../../../components/forms/Subform";
 import AdminsideNavcopy from "../../../components/nav/AdminsideNavcopy";
+import CategoryImgupload from "../../../components/forms/CategoryImgupload";
+import axios from "axios";
 
 const SubUpdate = ({ match, history }) => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [parent, setParent] = useState("");
@@ -27,17 +30,19 @@ const SubUpdate = ({ match, history }) => {
     getSub(match.params.slug).then((s) => {
       setName(s.data.sub.name);
       setParent(s.data.sub.parent);
+      setImage(s.data.sub.image);
     });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(name);
     setLoading(true);
-    updateSub(match.params.slug, { name, parent }, user.token)
+    updateSub(match.params.slug, { name, parent, image }, user.token)
       .then((res) => {
         // console.log(res)
         setLoading(false);
         setName("");
+        setImage("");
         toast.success(`"${res.data.name}" is updated`);
         history.push("/AdminPanel?page=SubCreate");
       })
@@ -45,6 +50,29 @@ const SubUpdate = ({ match, history }) => {
         console.log(err);
         setLoading(false);
         if (err.response.status === 400) toast.error(err.response.data);
+      });
+  };
+
+  const handleImageRemove = (public_id) => {
+    setLoading(true);
+    // console.log("remove image", public_id);
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/removeimage`,
+        { public_id },
+        {
+          headers: {
+            authtoken: user ? user.token : "",
+          },
+        }
+      )
+      .then((res) => {
+        setLoading(false);
+        setImage("");
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
       });
   };
 
@@ -59,7 +87,14 @@ const SubUpdate = ({ match, history }) => {
             ) : (
               <h4>Update sub category</h4>
             )}
-
+            <div className="p-3">
+              <CategoryImgupload
+                image={image}
+                setImage={setImage}
+                setLoading={setLoading}
+                handleImageRemove={handleImageRemove}
+              />
+            </div>
             <div className="form-group">
               <label>Parent category</label>
               <select
@@ -85,6 +120,7 @@ const SubUpdate = ({ match, history }) => {
               handleSubmit={handleSubmit}
               name={name}
               setName={setName}
+              image={image}
             />
           </div>
         </div>

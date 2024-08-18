@@ -1,3 +1,31 @@
+/* ------------- sub category styling -------- */
+.subcatecont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.subcatelink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.subcatelink img {
+  width: 8rem;
+}
+.subcatelink p {
+  font-size: 1.5rem;
+  color: rgb(104, 104, 104);
+  font-weight: 500;
+}
+.subcatelink:hover p {
+  font-size: 1.51rem;
+  color: var(--org-primary);
+}
+
 /* ------------- main Slider -------- */
 
 .sliderdiv {

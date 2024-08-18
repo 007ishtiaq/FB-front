@@ -3,6 +3,7 @@ import classes from "./CategoriesPanal.module.css";
 import { Link } from "react-router-dom";
 import { ReactComponent as Applesvg } from "../../../images/headersvgs/Applesvg.svg";
 import CategorylistSkull from "../../Skeletons/CategorylistSkull";
+import sampleimg from "../../../images/catesample3.webp";
 
 const CategoriesPanal = (props) => {
   const { loading, Categories } = props;
@@ -56,26 +57,19 @@ const CategoriesPanal = (props) => {
           className={classes.subCatrgoriesmain}
           style={{ display: `${showPanal}` }}
         >
-          {subCategories &&
-            subCategories.map((category) => {
-              return (
-                <div className={classes.subcategory} key={category._id}>
-                  <span>
-                    {" "}
-                    <Link to={`/shop?${category.slug}`}>{category.name}</Link>
-                  </span>
-                  {category.children.length > 0 && (
-                    <ul className="sub_sub_ul">
-                      {category.children.map((child) => (
-                        <li key={child._id}>
-                          <Link to={`/shop?${child.slug}`}> {child.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              );
-            })}
+          <div className="subcatecont">
+            {subCategories &&
+              subCategories.map((category) => {
+                return (
+                  <div className={classes.subcategory} key={category._id}>
+                    <Link className="subcatelink" to={`/shop?${category.slug}`}>
+                      <img src={category.image && category.image.url} alt="" />
+                      <p>{category.name}</p>
+                    </Link>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SubForm = ({ handleSubmit, name, setName }) => (
+const SubForm = ({ handleSubmit, name, setName, image }) => (
   <form onSubmit={handleSubmit}>
     <div className="form-group">
       <label>Name</label>
@@ -13,7 +13,9 @@ const SubForm = ({ handleSubmit, name, setName }) => (
         required
       />
       <br />
-      <button className="btn btn-outline-primary">Save</button>
+      <button disabled={!image} className="btn btn-outline-primary">
+        Save
+      </button>
     </div>
   </form>
 );

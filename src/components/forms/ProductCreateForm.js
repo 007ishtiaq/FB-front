@@ -39,7 +39,7 @@ const ProductCreateForm = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Article Number</label>
+        <label>Article Number (Required) </label>
         <input
           type="number"
           className="form-control"
@@ -49,7 +49,7 @@ const ProductCreateForm = ({
         />
       </div>
       <div className="form-group">
-        <label>Title</label>
+        <label>Title (Required) </label>
         <input
           type="text"
           className="form-control"
@@ -71,7 +71,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Price</label>
+        <label>Price [0 or ~]</label>
         <input
           type="number"
           name="price"
@@ -81,7 +81,7 @@ const ProductCreateForm = ({
         />
       </div>
       <div className="form-group">
-        <label>Discount Price (optional)</label>
+        <label>Discount Price (optional - if flashsale then required)</label>
         <input
           type="number"
           name="disprice"
@@ -92,7 +92,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Shipping</label>
+        <label>Shipping (Required)</label>
         <select
           name="shipping"
           className="form-control"
@@ -104,7 +104,7 @@ const ProductCreateForm = ({
         </select>
       </div>
       <div className="form-group">
-        <label>Weight</label>
+        <label>Weight (Required for shipping)</label>
         <input
           type="number"
           name="weight"
@@ -115,7 +115,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Quantity</label>
+        <label>Quantity (for flashsale scarcity)</label>
         <input
           type="number"
           name="quantity"
@@ -126,7 +126,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Color</label>
+        <label>Color (Required)</label>
         <select name="color" className="form-control" onChange={handleChange}>
           <option>Please select</option>
           {colors.map((c) => (
@@ -138,7 +138,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Brand</label>
+        <label>Brand (Required)</label>
         <select name="brand" className="form-control" onChange={handleChange}>
           <option>Please select</option>
           {brands.map((b) => (
@@ -150,7 +150,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Category</label>
+        <label>Category (Required)</label>
         <select
           name="category"
           className="form-control"
@@ -220,7 +220,7 @@ const ProductCreateForm = ({
       )}
 
       <div className="form-group">
-        <label>On Sale ?</label>
+        <label>On Sale ? (if onsale then Required)</label>
         <select name="onSale" className="form-control" onChange={handleChange}>
           <option>Please select</option>
           <option value="No">No</option>
