@@ -63,6 +63,12 @@ body {
   color: black !important;
   /* line-height: unset !important; */
 }
+
+a:active,
+a:hover {
+  text-decoration: none;
+  outline: 0;
+}
 /* -----common classes----- */
 
 .fullcont {
@@ -398,6 +404,7 @@ textarea:focus {
   border-color: var(--org-primary) !important;
   box-shadow: 0 0 7px rgba(255, 165, 0, 0.5);
 }
+
 .errorstate {
   font-weight: 400;
   font-size: 1.2rem;

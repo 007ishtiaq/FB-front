@@ -60,8 +60,8 @@ footer {
 .optin-input:focus-visible,
 .optin-input:active {
   outline: 0 !important;
-  border: 0 !important;
 }
+
 .optinbtn {
   display: inline-block;
   padding: 0.57rem 3.5rem;

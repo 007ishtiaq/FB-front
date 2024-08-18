@@ -4,7 +4,7 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 0.8rem 0.8rem;
+  padding: 1.6rem 0.8rem;
   padding-bottom: 1.6rem;
   gap: 1.6rem;
   overflow: hidden;
@@ -20,16 +20,18 @@
 .categorylist_ul {
   display: flex;
   flex-direction: column;
+  /* font-size: 1.6rem; */
   font-size: var(--fontsize-small);
   margin: 0;
 }
 .sub_sub_ul {
   list-style: none;
+  margin-top: 0.5rem;
 }
 .categorylist {
   display: flex;
   align-items: center;
-  height: 3.2rem;
+  height: 3.44rem;
   text-decoration: none;
   background-color: transparent;
   color: var(--dark-gray);
@@ -40,7 +42,8 @@
   flex-grow: 1;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 .categorylist .catesvg svg {
   margin-right: 0.4rem;
@@ -62,10 +65,10 @@
 }
 
 .slidercenterdiv {
-  max-width: 71.2rem;
+  max-width: 94.3rem;
   flex-grow: 1;
   border-radius: 0.4rem;
-  height: 38.4rem;
+  height: 42rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
   background-color: rgb(224, 224, 224);
   color: white;

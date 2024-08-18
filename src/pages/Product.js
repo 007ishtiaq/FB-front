@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getProduct,
   getSimilar,
-  getRelated,
+  // getRelated,
   productStar,
 } from "../functions/product";
 import { toast } from "react-hot-toast";
@@ -18,7 +18,7 @@ import ProductReviews from "../components/productPage/ProductReviews";
 const Product = ({ match, history }) => {
   const [product, setProduct] = useState({});
   const [similarProduct, setSimilarProduct] = useState([]);
-  const [related, setRelated] = useState([]);
+  // const [related, setRelated] = useState([]);
   const [star, setStar] = useState(0);
   const [productIdforreview, setProductIdforreview] = useState("");
   const [comment, setComment] = useState("");
@@ -55,7 +55,7 @@ const Product = ({ match, history }) => {
           getSimilar(res.data.slug).then((res) => setSimilarProduct(res.data));
 
           // load related
-          getRelated(res.data._id).then((res) => setRelated(res.data));
+          // getRelated(res.data._id).then((res) => setRelated(res.data));
         })
         .catch((error) => {
           if (error.response && error.response.status === 404) {

@@ -38,20 +38,20 @@ export const updateProduct = async (slug, product, authtoken) =>
     },
   });
 
-export const getProducts = async (sort, order, page) =>
-  await axios.post(`${process.env.REACT_APP_API}/products`, {
-    sort,
-    order,
-    page,
-  });
+// export const getProducts = async (sort, order, page) =>
+//   await axios.post(`${process.env.REACT_APP_API}/products`, {
+//     sort,
+//     order,
+//     page,
+//   });
 export const getReviews = async (productslug, page) =>
   await axios.post(`${process.env.REACT_APP_API}/reviews`, {
     productslug,
     page,
   });
 
-export const getFlashproducts = async () =>
-  await axios.post(`${process.env.REACT_APP_API}/products/flash`);
+// export const getFlashproducts = async () =>
+//   await axios.post(`${process.env.REACT_APP_API}/products/flash`);
 
 export const getcurrentFlash = async () =>
   await axios.post(`${process.env.REACT_APP_API}/products/currentflash`);
@@ -59,10 +59,10 @@ export const getcurrentFlash = async () =>
 export const checkFlash = async (slug) =>
   await axios.post(`${process.env.REACT_APP_API}/product/checkflash/${slug}`);
 
-export const resetFlash = async (date) =>
-  await axios.post(`${process.env.REACT_APP_API}/product/flashreset/`, {
-    date,
-  });
+// export const resetFlash = async (date) =>
+//   await axios.post(`${process.env.REACT_APP_API}/product/flashreset/`, {
+//     date,
+//   });
 
 export const getProductsCount = async () =>
   await axios.get(`${process.env.REACT_APP_API}/products/total`);
@@ -90,8 +90,8 @@ export const getSimilar = async (productSlug) =>
     `${process.env.REACT_APP_API}/product/Similar/${productSlug}`
   );
 
-export const getRelated = async (productId) =>
-  await axios.get(`${process.env.REACT_APP_API}/product/related/${productId}`);
+// export const getRelated = async (productId) =>
+//   await axios.get(`${process.env.REACT_APP_API}/product/related/${productId}`);
 
 export const fetchProductsByFilter = async (arg) =>
   await axios.post(`${process.env.REACT_APP_API}/search/filters`, arg);

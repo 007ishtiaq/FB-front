@@ -39,8 +39,7 @@ export default function ProductInfo({ product, similarProduct }) {
     color,
     shipping,
     category,
-    subs,
-    subs2,
+    attributes,
     weight,
     quantity,
     sold,
@@ -481,27 +480,25 @@ export default function ProductInfo({ product, similarProduct }) {
                     </div>
                   </li>
                 )}
-                {subs && (
-                  <li className="desc_li">
-                    <div className="li_head">Category</div>
-                    <div className="li_sub">
-                      <Link to={`/sub/${subs.slug}`}>{subs.name}</Link>
-                    </div>
-                  </li>
-                )}
-
-                {subs2 && subs2.length > 0 && (
-                  <li className="desc_li">
-                    <div className="li_head">Tags</div>
-                    <div className="li_sub">
-                      {subs2.map((s2) => (
-                        <Link key={s2._id} to={`/sub2/${s2.slug}`}>
-                          {s2.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </li>
-                )}
+                {attributes.map((attribute) => (
+                  <React.Fragment key={attribute._id}>
+                    {attribute.subs && (
+                      <li className="desc_li">
+                        <div className="li_head">{attribute.subs.name}</div>
+                        <div className="li_sub">
+                          {attribute.subs2.map((s2) => (
+                            <Link
+                              key={s2._id}
+                              to={`/shop?${s2.name.replace(/\s+/g, "")}`}
+                            >
+                              <span className="featurename">{s2.name}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </li>
+                    )}
+                  </React.Fragment>
+                ))}
 
                 <li className="desc_li">
                   <div className="li_head">Color</div>

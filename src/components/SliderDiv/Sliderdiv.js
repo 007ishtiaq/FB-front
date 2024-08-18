@@ -3,7 +3,6 @@ import "./SliderDiv.css";
 import Slider from "./Slider/Slider";
 import CategoriesPanal from "./categoriesPanal/CategoriesPanal";
 import { getCategoriesslider } from "../../functions/category";
-import Banners from "./SmallBanners/Banners";
 // import categorydata from "./responses/categorydata";
 // Categories={categorydata.Categories}
 
@@ -39,7 +38,6 @@ export default function () {
         <div className="slidercenterdiv">
           <Slider />
         </div>
-        {!isMobile && <Banners />}
       </div>
     </>
   );

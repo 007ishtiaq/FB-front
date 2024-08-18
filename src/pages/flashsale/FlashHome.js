@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import { Online } from "react-detect-offline";
 import "./FlashHome.css";
 import ProductsCardAll from "../../components/ProductsCardAll/ProductsCardAll";
-import { getcurrentFlash, getFlashproducts } from "../../functions/product";
+import { getcurrentFlash } from "../../functions/product";
 import MegaBanner from "../../components/megabanner/MegaBanner";
 import { getRelatedBanners } from "../../functions/banner";
-import ProductCountdowns from "../../components/countdown/ProductCountdowns";
 
 export default function FlashHome() {
   const [banners, setBanners] = useState([]);
@@ -41,7 +40,7 @@ export default function FlashHome() {
 
   return (
     <div className="centercont">
-      <MegaBanner loading={loading} banner={banners[0]} />
+      <MegaBanner loading={loading} banner={banners[1]} />
       <Online onChange={loadFlashproducts} />
       <ProductsCardAll
         products={products}

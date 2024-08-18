@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import FlashsaleProductCard from "../../ProductCards/FlashsaleProductCard";
 import ProductsSlider from "../productSlider/ProductsSlider";
 // import Countdown from "../../countdown/Countdown";
 import ProductCountdowns from "../../countdown/ProductCountdowns";
-import {
-  getFlashproducts,
-  resetFlash,
-  getcurrentFlash,
-} from "../../../functions/product";
-import { toast } from "react-hot-toast";
+import { getcurrentFlash } from "../../../functions/product";
 import { Link } from "react-router-dom";
 import ProductCardSkull from "../../Skeletons/ProductCardSkull";
-
-let datearray = [];
 
 const ProductsGroup = () => {
   const [products, setProducts] = useState([]);

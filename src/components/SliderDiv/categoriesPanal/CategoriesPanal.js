@@ -37,7 +37,7 @@ const CategoriesPanal = (props) => {
                   onMouseLeave={handleave}
                 >
                   <Link
-                    to={`/categories/${category._id}`}
+                    to={`/category/?category=${category.slug}`}
                     className="categorylist"
                   >
                     <div className="catesvg">
@@ -62,18 +62,13 @@ const CategoriesPanal = (props) => {
                 <div className={classes.subcategory} key={category._id}>
                   <span>
                     {" "}
-                    <Link to={`/categories/${category._id}`}>
-                      {category.name}
-                    </Link>
+                    <Link to={`/shop?${category.slug}`}>{category.name}</Link>
                   </span>
                   {category.children.length > 0 && (
                     <ul className="sub_sub_ul">
                       {category.children.map((child) => (
                         <li key={child._id}>
-                          <Link to={`/categories/${child._id}`}>
-                            {" "}
-                            {child.name}
-                          </Link>
+                          <Link to={`/shop?${child.slug}`}> {child.name}</Link>
                         </li>
                       ))}
                     </ul>

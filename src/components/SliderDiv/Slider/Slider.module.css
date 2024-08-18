@@ -105,14 +105,14 @@
   }
   .item {
     position: static;
-    width: 300px;
+    width: 320px;
     height: 100%;
     opacity: 1;
     margin-right: 5px;
   }
 
   .item img {
-    width: 300px;
+    width: 320px;
     height: 100%;
   }
   .Slider .left,

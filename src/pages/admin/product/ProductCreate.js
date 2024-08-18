@@ -18,8 +18,6 @@ const initialState = {
   disprice: "",
   categories: [],
   category: "",
-  subs: "",
-  subs2: [],
   shipping: "Yes",
   quantity: "50",
   weight: "500",
@@ -36,8 +34,7 @@ const ProductCreate = () => {
   const [values, setValues] = useState(initialState);
   const [subOptions, setSubOptions] = useState([]);
   const [sub2Options, setSub2Options] = useState([]);
-  const [showSub, setShowSub] = useState(false);
-  const [showSub2, setShowSub2] = useState(false);
+  const [attributes, setAttributes] = useState([{ subs: "", subs2: [] }]);
   const [loading, setLoading] = useState(false);
 
   // redux
@@ -68,15 +65,14 @@ const ProductCreate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createProduct(values, user.token)
+    const payload = { ...values, attributes };
+    createProduct(payload, user.token)
       .then((res) => {
-        console.log(res);
         window.alert(`"${res.data.title}" is created`);
         window.location.reload();
       })
       .catch((err) => {
         console.log(err);
-        // if (err.response.status === 400) toast.error(err.response.data);
         toast.error(err.response.data.error);
       });
   };
@@ -89,23 +85,34 @@ const ProductCreate = () => {
 
   const handleCatagoryChange = (e) => {
     e.preventDefault();
-    console.log("CLICKED CATEGORY", e.target.value);
-    setValues({ ...values, subs: "", subs2: [], category: e.target.value });
+    setValues({ ...values, category: e.target.value });
+    setAttributes([{ subs: "", subs2: [] }]);
     getCategorySubs(e.target.value).then((res) => {
-      console.log("SUB OPTIONS ON CATGORY CLICK", res);
       setSubOptions(res.data);
     });
-    setShowSub(true);
   };
-  const handleSubChange = (e) => {
+
+  const handleSubChange = (index, e) => {
     e.preventDefault();
-    console.log("CLICKED Sub category", e.target.value);
-    setValues({ ...values, subs2: [], subs: e.target.value });
-    getSubsSub2(e.target.value).then((res) => {
-      console.log("SUB2 OPTIONS ON Sub CLICK", res);
+    const newAttributes = [...attributes];
+    const selectedSub = e.target.value;
+    newAttributes[index].subs = selectedSub;
+    newAttributes[index].subs2 = [];
+    setAttributes(newAttributes);
+
+    getSubsSub2(selectedSub).then((res) => {
       setSub2Options(res.data);
     });
-    setShowSub2(true);
+  };
+
+  const handleSub2Change = (index, value) => {
+    const newAttributes = [...attributes];
+    newAttributes[index].subs2 = value;
+    setAttributes(newAttributes);
+  };
+
+  const addAttribute = () => {
+    setAttributes([...attributes, { subs: "", subs2: [] }]);
   };
 
   return (
@@ -116,8 +123,6 @@ const ProductCreate = () => {
         <h4>Product create</h4>
       )}
       <hr />
-
-      {/* {JSON.stringify(values)} */}
 
       <div className="p-3">
         <FileUpload
@@ -136,10 +141,10 @@ const ProductCreate = () => {
         handleSubChange={handleSubChange}
         subOptions={subOptions}
         sub2Options={sub2Options}
-        showSub={showSub}
-        showSub2={showSub2}
+        handleSub2Change={handleSub2Change}
+        attributes={attributes}
+        addAttribute={addAttribute}
       />
-      {/* {JSON.stringify(initialState.brands)} */}
     </div>
   );
 };

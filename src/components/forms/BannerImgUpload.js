@@ -22,7 +22,7 @@ const BannerImgUpload = ({
         1152,
         1152,
         "WebP",
-        50,
+        100,
         0,
         (uri) => {
           // console.log(uri);

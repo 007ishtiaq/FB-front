@@ -40,6 +40,7 @@
 .timecont,
 .timer {
   display: flex;
+  align-items: center;
 }
 .timetxt {
   margin-right: 1rem;
@@ -367,11 +368,18 @@
   .ratingstarsp div {
     display: block;
   }
+  .timetxt {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 400px) {
   .textpart {
     padding: 0.4rem 0.3rem 0.8rem;
+  }
+  .timetxt {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
   }
 }
 @media (max-width: 332px) {

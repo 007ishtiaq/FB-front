@@ -105,7 +105,7 @@ const SubCreate = () => {
       {/* step 5 */}
       {subs.filter(searched(keyword)).map((s) => (
         <div className="alert alert-secondary" key={s._id}>
-          {s.name}
+          {s.name} --- {s.slug}
           <span
             onClick={() => handleRemove(s.slug)}
             className="btn btn-sm float-right"

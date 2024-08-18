@@ -1,9 +1,6 @@
 /* _____category-square style_____ */
 /* _____cardcontainer-insidecont-contentcont-itemcolum---from commons___ */
 
-.firstcont {
-  padding: 1.6rem 0.8rem;
-}
 .categorycont {
   display: flex;
   flex-wrap: wrap;

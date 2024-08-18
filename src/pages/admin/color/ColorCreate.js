@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { createColor, getColors, removeColor } from "../../../functions/color";
-import { Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import BrandForm from "../../../components/forms/BrandForm";
+import { DeleteOutlined } from "@ant-design/icons";
 import LocalSearch from "../../../components/forms/LocalSearch";
 
 const ColorCreate = () => {
@@ -70,8 +68,20 @@ const ColorCreate = () => {
       ) : (
         <h4>Create Color</h4>
       )}
-
-      <BrandForm handleSubmit={handleSubmit} name={name} setName={setName} />
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            className="form-control"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            autoFocus
+            required
+          />
+          <button className="btn btn-outline-primary">Save</button>
+        </div>
+      </form>
 
       {/* step 2 and step 3 */}
       <LocalSearch keyword={keyword} setKeyword={setKeyword} />

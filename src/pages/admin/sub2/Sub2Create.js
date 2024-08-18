@@ -92,7 +92,7 @@ const Sub2Create = () => {
           {subs.length > 0 &&
             subs.map((s) => (
               <option key={s._id} value={s._id}>
-                {s.name}
+                {s.name} --- {s.slug}
               </option>
             ))}
         </select>
@@ -106,7 +106,7 @@ const Sub2Create = () => {
       {/* step 5 */}
       {subs2.filter(searched(keyword)).map((s2) => (
         <div className="alert alert-secondary" key={s2._id}>
-          {s2.name}
+          {s2.name} --- {s2.slug}
           <span
             onClick={() => handleRemove(s2.slug)}
             className="btn btn-sm float-right"

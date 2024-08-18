@@ -18,6 +18,7 @@ import "../SliderDiv/SliderDiv.css";
 import { ReactComponent as Callsvg } from "../../images/contactUs/calloutlined.svg";
 import { ReactComponent as Mailsvg } from "../../images/contactUs/mail.svg";
 import { ReactComponent as Helpsvg } from "../../images/headersvgs/help.svg";
+import { ReactComponent as Earnsvg } from "../../images/headersvgs/earn.svg";
 
 const Header = () => {
   const [staticTexts, setStaticTexts] = useState([]);
@@ -112,6 +113,7 @@ const Header = () => {
       <div class="headermain">
         <div class="top-header">
           <div class="newsleft helperlinkcont">
+            <Earnsvg className="mailsvgcont"></Earnsvg>
             <p class="top_tag_Center" onClick={copyToClipboard}>
               {htmlToRender(
                 staticTexts && staticTexts.length > 0 && staticTexts[0].info1

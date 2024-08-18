@@ -15,17 +15,8 @@ const FlashsaleProductCard = ({
   FlashSalesCont,
   WidthIdea,
 }) => {
-  const {
-    title,
-    slug,
-    price,
-    shipping,
-    quantity,
-    sold,
-    images,
-    disprice,
-    onSale,
-  } = product;
+  const { title, slug, price, quantity, sold, images, disprice, onSale } =
+    product;
 
   const [imageLoaded, setImageLoaded] = useState(false);
 

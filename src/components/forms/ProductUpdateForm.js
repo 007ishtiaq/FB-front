@@ -12,12 +12,15 @@ const ProductUpdateForm = ({
   colors,
   handleCategoryChange,
   handleSubChange,
+  handleSub2Change,
   categories,
   subOptions,
   sub2Options,
   arrayOfSubs2,
   setArrayOfSubs2,
   selectedCategory,
+  attributes,
+  addAttribute,
 }) => {
   // destructure
   const {
@@ -27,8 +30,6 @@ const ProductUpdateForm = ({
     price,
     disprice,
     category,
-    subs,
-    subs2,
     shipping,
     quantity,
     weight,
@@ -179,40 +180,57 @@ const ProductUpdateForm = ({
       </div>
 
       <div>
-        <label>Sub Level 1</label>
-        <select
-          name="subs"
-          className="form-control"
-          onChange={handleSubChange}
-          placeholder="Please select"
-          value={subs._id}
-        >
-          <option>Please select</option>
-          {subOptions.length > 0 &&
-            subOptions.map((s) => (
-              <option key={s._id} value={s._id}>
-                {s.name}
-              </option>
-            ))}
-        </select>
-      </div>
+        {attributes.map((attr, index) => (
+          <div key={index}>
+            <div className="form-group">
+              <label>Sub Level 1</label>
+              <select
+                name="sub"
+                className="form-control"
+                onChange={(e) => handleSubChange(index, e)}
+                value={attr.subs._id || attr.subs}
+                style={{ width: "100%" }}
+              >
+                <option value="">Please select</option>
+                {subOptions.length > 0 &&
+                  subOptions.map((s) => (
+                    <option key={s._id} value={s._id}>
+                      {s.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
 
-      <div>
-        <label>Sub Level 2</label>
-        <Select
-          mode="multiple"
-          style={{ width: "100%" }}
-          placeholder="Please select"
-          value={arrayOfSubs2}
-          onChange={(value) => setArrayOfSubs2(value)}
+            {attr.subs && (
+              <div className="form-group">
+                <label>Sub Level 2</label>
+                <Select
+                  mode="multiple"
+                  style={{ width: "100%" }}
+                  placeholder="Please select"
+                  value={attr.subs2.map((s2) => s2._id)}
+                  onChange={(value) => handleSub2Change(index, value)}
+                >
+                  {attr.sub2Options &&
+                    attr.sub2Options.length > 0 &&
+                    attr.sub2Options.map((s2) => (
+                      <Option key={s2._id} value={s2._id}>
+                        {s2.name}
+                      </Option>
+                    ))}
+                </Select>
+              </div>
+            )}
+          </div>
+        ))}
+
+        <button
+          type="button"
+          className="btn btn-outline-secondary"
+          onClick={addAttribute}
         >
-          {sub2Options.length &&
-            sub2Options.map((s2) => (
-              <Option key={s2._id} value={s2._id}>
-                {s2.name}
-              </Option>
-            ))}
-        </Select>
+          Add Attribute
+        </button>
       </div>
 
       <div className="form-group">

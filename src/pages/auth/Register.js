@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createOrUpdateUser } from "../../functions/auth";
 import Spinner from "../../components/Spinner/Spinner";
 import Smallspinner from "../../components/Spinner/Smallspinner";
-import { ReactComponent as Logosvg } from "../../images/headersvgs/pearllogo.svg";
-import { ReactComponent as Pearlytouchtxt } from "../../images/headersvgs/pearlytouch.svg";
+import { ReactComponent as Logosvg } from "../../images/headersvgs/logosign.svg";
+import { ReactComponent as Logotextblack } from "../../images/headersvgs/logotextblack.svg";
 import "./Login.css";
 import { useFormik } from "formik";
 import { registerSchema } from "../../schemas";
@@ -199,32 +199,32 @@ const Register = ({ history }) => {
     initialValues: initialValues,
     validationSchema: registerSchema,
     onSubmit: async (values, action) => {
-      if (navigator.onLine) {
-        setLoading(true);
-        try {
-          const config = {
-            url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
-            handleCodeInApp: true,
-          };
-          await auth.sendSignInLinkToEmail(values.email, config);
+      // if (navigator.onLine) {
+      setLoading(true);
+      try {
+        const config = {
+          url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
+          handleCodeInApp: true,
+        };
+        await auth.sendSignInLinkToEmail(values.email, config);
 
-          toast.success(
-            `Email is sent to "${values.email}". Click the link to complete your registration.`
-          );
-          // save user email in local storage
-          window.localStorage.setItem("emailForRegistration", values.email);
-          // clear state
-          action.resetForm();
-          setLoading(false);
-        } catch (error) {
-          // console.error("Error sending sign-in link:", error);
-          setLoading(false);
-          toast.error("No Internet Connection");
-          setNoNetModal(true);
-        }
-      } else {
+        toast.success(
+          `Email is sent to "${values.email}". Click the link to complete your registration.`
+        );
+        // save user email in local storage
+        window.localStorage.setItem("emailForRegistration", values.email);
+        // clear state
+        action.resetForm();
+        setLoading(false);
+      } catch (error) {
+        // console.error("Error sending sign-in link:", error);
+        setLoading(false);
+        toast.error("No Internet Connection");
         setNoNetModal(true);
       }
+      // } else {
+      //   setNoNetModal(true);
+      // }
     },
   });
 
@@ -234,21 +234,23 @@ const Register = ({ history }) => {
         <div class="loginmain">
           <div class="logincont">
             <div class="loginheadside">
-              {loading ? (
-                <div className="spinnerwraper">
-                  <div className="bigspinner">
-                    <Spinner />
+              <div className="topsign">
+                {loading ? (
+                  <div className="spinnerwraper">
+                    <div className="bigspinner">
+                      <Spinner />
+                    </div>
+                    <div className="smallspinner loginside">
+                      <Smallspinner />
+                    </div>
                   </div>
-                  <div className="smallspinner loginside">
-                    <Smallspinner />
+                ) : (
+                  <div class="loginlogo">
+                    <Logosvg />
                   </div>
-                </div>
-              ) : (
-                <div class="loginlogo">
-                  <Logosvg />
-                </div>
-              )}
-              <div class="welcometxt">Welcome to Pearly</div>
+                )}
+              </div>
+              <div class="welcometxt">Welcome to Appliance Bazar</div>
               <div class="guidetxt">Type your Email for Registration</div>
               <form onSubmit={handleSubmit} className="submitionform">
                 <div class="logininputcont">
@@ -323,11 +325,8 @@ const Register = ({ history }) => {
                 our customer service team.
               </div>
               <div class="loginfooterlogocont">
-                <div class="loginfooterlogosvg">
-                  <Logosvg />
-                </div>
                 <div class="loginfooterlogotxt">
-                  <Pearlytouchtxt />
+                  <Logotextblack />
                 </div>
               </div>
             </div>

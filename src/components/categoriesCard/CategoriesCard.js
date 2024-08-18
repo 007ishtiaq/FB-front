@@ -42,7 +42,7 @@ export default function CategoriesCard({ slug }) {
   }, []);
 
   return (
-    <div class="cardcontainer firstcont">
+    <div class="cardcontainer">
       <div class="insidecont">
         {loading ? (
           <div class="contentcont categorycont">

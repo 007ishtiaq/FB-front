@@ -14,7 +14,7 @@
   transform: translate(-50%, -50%); /* Center the logo container */
 }
 .logo-container svg {
-  width: 12rem;
+  width: 20rem;
 }
 .logo-container svg g {
   fill: var(--dark-gray);

@@ -74,7 +74,7 @@ const Sub2Update = ({ match, history }) => {
                       value={s._id}
                       selected={s._id === parent}
                     >
-                      {s.name}
+                      {s.name} --- {s.slug}
                     </option>
                   ))}
               </select>
