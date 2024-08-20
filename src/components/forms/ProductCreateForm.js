@@ -22,6 +22,7 @@ const ProductCreateForm = ({
     description,
     price,
     disprice,
+    shippingcharges,
     categories,
     category,
     shipping,
@@ -71,7 +72,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Price [0 or ~]</label>
+        <label>Price [0 or ~] (required)</label>
         <input
           type="number"
           name="price"
@@ -81,7 +82,7 @@ const ProductCreateForm = ({
         />
       </div>
       <div className="form-group">
-        <label>Discount Price (optional - if flashsale then required)</label>
+        <label>Discount Price (if flashsale then required) (optional)</label>
         <input
           type="number"
           name="disprice"
@@ -90,9 +91,22 @@ const ProductCreateForm = ({
           onChange={handleChange}
         />
       </div>
+      <div className="form-group">
+        <label>
+          Shipping Cahrges (shipping level 1) [first priority - if free item]
+          (optional)
+        </label>
+        <input
+          type="number"
+          name="shippingcharges"
+          className="form-control"
+          value={shippingcharges}
+          onChange={handleChange}
+        />
+      </div>
 
       <div className="form-group">
-        <label>Shipping (Required)</label>
+        <label>Free Shipping (shipping level 2) (Required)</label>
         <select
           name="shipping"
           className="form-control"
@@ -104,7 +118,7 @@ const ProductCreateForm = ({
         </select>
       </div>
       <div className="form-group">
-        <label>Weight (Required for shipping)</label>
+        <label>Weight (shipping level 3) (Required for shipping)</label>
         <input
           type="number"
           name="weight"

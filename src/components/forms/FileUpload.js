@@ -3,6 +3,7 @@ import Resizer from "react-image-file-resizer";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Avatar, Badge } from "antd";
+import { toast } from "react-hot-toast";
 
 const FileUpload = ({ values, setValues, setLoading }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -44,6 +45,7 @@ const FileUpload = ({ values, setValues, setLoading }) => {
               })
               .catch((err) => {
                 setLoading(false);
+                toast.error(err.response.statusText);
                 console.log("CLOUDINARY UPLOAD ERR", err);
               });
           },
@@ -78,6 +80,7 @@ const FileUpload = ({ values, setValues, setLoading }) => {
       })
       .catch((err) => {
         console.log(err);
+        // toast.error(err);
         setLoading(false);
       });
   };

@@ -16,6 +16,7 @@ const initialState = {
   description: "This is the best Apple product",
   price: "45000",
   disprice: "",
+  shippingcharges: "",
   categories: [],
   category: "",
   shipping: "Yes",

@@ -140,7 +140,7 @@ const FlashsaleProductCard = ({
           </>
         ) : (
           <div class="p-side common-p-side">
-            {price ? (
+            {price > 0 ? (
               <>
                 <span>$ {price}</span>
                 .00

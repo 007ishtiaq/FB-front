@@ -128,7 +128,7 @@ const Product = ({ product, contWidth }) => {
           </>
         ) : (
           <div class="p-side common-p-side">
-            {price ? (
+            {price > 0 ? (
               <>
                 <span>$ {price}</span>
                 .00
