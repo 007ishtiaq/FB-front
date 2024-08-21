@@ -384,9 +384,8 @@ export default function ProductInfo({ product, similarProduct }) {
             )}
           </div>
           <hr />
-
-          {price != null ? (
-            disprice ? (
+          {price ? (
+            disprice !== null ? (
               <>
                 <div className="centerpricingcont">
                   {saleTime ? (
@@ -404,9 +403,18 @@ export default function ProductInfo({ product, similarProduct }) {
                       <div class="flashtimersub">
                         <div class="flashpricecont">
                           <div className="centerprice">
-                            <span className="pricesmallpart">Rs.</span>
-                            <span className="pricesize">{disprice}</span>
-                            <span className="pricesmallpart">.00</span>
+                            <span className="pricesmallpart">$ </span>
+                            <span>
+                              {disprice !== 0 ? (
+                                <>
+                                  <span className="pricesize">{disprice}</span>
+
+                                  <span className="pricesmallpart">.00</span>
+                                </>
+                              ) : (
+                                <span className="pricesize">FREE</span>
+                              )}
+                            </span>
                           </div>
                           <div class="normalprice">Rs {price}.00</div>
                           <div class="dispersent">
@@ -428,7 +436,6 @@ export default function ProductInfo({ product, similarProduct }) {
                               }}
                               class="meter"
                             ></div>
-                            {/* <span></span> */}
                           </div>
                         </div>
                       </div>
@@ -439,7 +446,7 @@ export default function ProductInfo({ product, similarProduct }) {
                         -{(100 - (disprice / price) * 100).toFixed(0)}%
                       </div>
                       <div className="centerprice">
-                        <span className="pricesmallpart">Rs.</span>
+                        <span className="pricesmallpart">$ </span>
                         <span className="pricesize">{disprice}</span>
                         <span className="pricesmallpart">.00</span>
                       </div>
@@ -455,7 +462,7 @@ export default function ProductInfo({ product, similarProduct }) {
               </>
             ) : (
               <div className="centerprice">
-                <span className="pricesmallpart">Rs.</span>{" "}
+                <span className="pricesmallpart">$ </span>{" "}
                 <span className="pricesize">{price}</span>
                 <span className="pricesmallpart">.00</span>
               </div>
@@ -463,7 +470,6 @@ export default function ProductInfo({ product, similarProduct }) {
           ) : (
             <Skeleton width={200} count={4} />
           )}
-
           <div className="desc_ul">
             {title ? (
               <ul>
@@ -516,7 +522,6 @@ export default function ProductInfo({ product, similarProduct }) {
               <Skeleton width={150} count={2} />
             )}
           </div>
-
           {similarProduct.length > 0 && (
             <div className="similer">
               <p>Available Colors</p>
@@ -537,9 +542,7 @@ export default function ProductInfo({ product, similarProduct }) {
               </ProductsSlider>
             </div>
           )}
-
           <hr />
-
           <div className="proaboutcont headingcont">
             <strong>About this item</strong>
           </div>
@@ -556,8 +559,10 @@ export default function ProductInfo({ product, similarProduct }) {
       <div className="productcontright">
         {title ? (
           <div className="rightprice">
-            <span className="pricesmallpart">Rs.</span>{" "}
-            <span className="pricesize">{disprice ? disprice : price}</span>
+            <span className="pricesmallpart">$ </span>{" "}
+            <span className="pricesize">
+              {disprice !== null ? (disprice === 0 ? "FREE" : disprice) : price}
+            </span>
             <span className="pricesmallpart">.00</span>
           </div>
         ) : (

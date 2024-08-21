@@ -72,7 +72,7 @@ const ProductCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Price [0 or ~] (required)</label>
+        <label>Price [ 1 or ~] (required) </label>
         <input
           type="number"
           name="price"
@@ -82,7 +82,10 @@ const ProductCreateForm = ({
         />
       </div>
       <div className="form-group">
-        <label>Discount Price (if flashsale then required) (optional)</label>
+        <label>
+          Discount Price [0 or ~] (required for FLASH or FREE ) (optional for
+          COMMON)
+        </label>
         <input
           type="number"
           name="disprice"
@@ -234,7 +237,7 @@ const ProductCreateForm = ({
       )}
 
       <div className="form-group">
-        <label>On Sale ? (if onsale then Required)</label>
+        <label>On Sale ? (if onsale or FREE item then Required)</label>
         <select name="onSale" className="form-control" onChange={handleChange}>
           <option>Please select</option>
           <option value="No">No</option>

@@ -126,11 +126,17 @@ const FlashsaleProductCard = ({
         )}
       </Link>
       <div class="textpart">
-        {disprice ? (
+        {disprice !== null ? (
           <>
             <div class="Pricediv">
               <div class="dis p-side">
-                <span>$ {disprice}</span>.00
+                {disprice !== 0 ? (
+                  <>
+                    <span>$ {disprice}</span>.00
+                  </>
+                ) : (
+                  <span>$ FREE</span>
+                )}
               </div>
               <div class="d-persontage">
                 -{(100 - (disprice / price) * 100).toFixed(0)}%
@@ -140,13 +146,11 @@ const FlashsaleProductCard = ({
           </>
         ) : (
           <div class="p-side common-p-side">
-            {price > 0 ? (
+            {price && (
               <>
                 <span>$ {price}</span>
                 .00
               </>
-            ) : (
-              <span className="freeitem">$ FREE</span>
             )}
           </div>
         )}
