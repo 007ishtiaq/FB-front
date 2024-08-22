@@ -382,7 +382,7 @@ const Cart = ({ history }) => {
               <div class="cartleftdown">
                 <div class="subtotalcont">
                   Subtotal ({cart.length} items) :{" "}
-                  <span> Rs {getTotal()}.00 </span>
+                  <span> $ {getTotal()}.00 </span>
                 </div>
                 <div class="cartbtnscont">
                   <Link to="/">
@@ -430,12 +430,12 @@ const Cart = ({ history }) => {
             <div class="summarysubcont">
               <div class="amtcont">
                 <span> Subtotal </span>
-                <span> Rs. {getTotal()}.00 </span>
+                <span> $ {getTotal()}.00 </span>
               </div>
 
               <div class="amtcont">
                 <span> Shipping fee </span>
-                <span> Rs. {shippingfee ? shippingfee : 0}.00 </span>
+                <span> $ {shippingfee ? shippingfee : 0}.00 </span>
               </div>
 
               {discountPersent !== null && (
@@ -446,26 +446,26 @@ const Cart = ({ history }) => {
                     {couponType !== null && (
                       <div className="coupontypetxt">
                         {couponType === "Discount" && `${discountPersent}% Off`}
-                        {couponType === "Cash" && `Rs.${discountPersent} Off`}
+                        {couponType === "Cash" && `$${discountPersent} Off`}
                         {couponType === "Shipping" && `Zero Shipping`}
                       </div>
                     )}
                   </span>
                   {couponType === "Discount" && (
                     <span>
-                      Rs. -{(getTotal() * discountPersent) / 100}
+                      $ -{(getTotal() * discountPersent) / 100}
                       .00{" "}
                     </span>
                   )}
                   {couponType === "Cash" && (
                     <span>
-                      Rs. -{discountPersent}
+                      $ -{discountPersent}
                       .00{" "}
                     </span>
                   )}
                   {couponType === "Shipping" && (
                     <span>
-                      Rs. -{shippingfee}
+                      $ -{shippingfee}
                       .00{" "}
                     </span>
                   )}
@@ -486,7 +486,7 @@ const Cart = ({ history }) => {
                   <>
                     {couponType === "Discount" && (
                       <span>
-                        Rs.{" "}
+                        ${" "}
                         {getTotal() -
                           (getTotal() * discountPersent) / 100 +
                           shippingfee}
@@ -495,19 +495,19 @@ const Cart = ({ history }) => {
                     )}
                     {couponType === "Cash" && (
                       <span>
-                        Rs. {getTotal() - discountPersent + shippingfee}
+                        $ {getTotal() - discountPersent + shippingfee}
                         .00{" "}
                       </span>
                     )}
                     {couponType === "Shipping" && (
                       <span>
-                        Rs. {getTotal() - shippingfee + shippingfee}
+                        $ {getTotal() - shippingfee + shippingfee}
                         .00{" "}
                       </span>
                     )}
                   </>
                 ) : (
-                  <span> Rs. {getTotal() + shippingfee}.00 </span>
+                  <span> $ {getTotal() + shippingfee}.00 </span>
                 )}
               </div>
               {user ? (

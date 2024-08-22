@@ -38,7 +38,6 @@ export default function ProductInfo({ product, similarProduct }) {
     price,
     brand,
     color,
-    shipping,
     category,
     attributes,
     weight,
@@ -416,7 +415,7 @@ export default function ProductInfo({ product, similarProduct }) {
                               )}
                             </span>
                           </div>
-                          <div class="normalprice">Rs {price}.00</div>
+                          <div class="normalprice">$ {price}.00</div>
                           <div class="dispersent">
                             <span>
                               -{(100 - (disprice / price) * 100).toFixed(0)}%
@@ -456,7 +455,7 @@ export default function ProductInfo({ product, similarProduct }) {
                 {!saleTime && (
                   <div className="listprice">
                     <span>List Price: </span>
-                    <span className="crossedprice">Rs {price}.00</span>
+                    <span className="crossedprice">$ {price}.00</span>
                   </div>
                 )}
               </>
@@ -511,7 +510,7 @@ export default function ProductInfo({ product, similarProduct }) {
                   <div className="li_head">Color</div>
                   <div className="li_sub">{color}</div>
                 </li>
-                {shipping === "Yes" && (
+                {shippingcharges === 0 && (
                   <li className="desc_li">
                     <div className="li_head">Shipping</div>
                     <div className="li_sub">Free Shipping*</div>
@@ -638,12 +637,12 @@ export default function ProductInfo({ product, similarProduct }) {
               {title ? (
                 <span>
                   {" "}
-                  Rs.{" "}
+                  ${" "}
                   {shippingcharges > 0
-                    ? shippingcharges
-                    : shipping === "Yes"
+                    ? `${shippingcharges}.00`
+                    : shippingcharges === 0
                     ? "FREE SHIPPING"
-                    : shippingfee}
+                    : `${shippingfee}.00`}
                 </span>
               ) : (
                 <Skeleton width={50} count={1} />

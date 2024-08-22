@@ -163,9 +163,13 @@ export default function ProductCardOnCart({
             <span class="variantsub">{color}</span>
           </div>
           <div class="subvariant">
+            <span class="varianthead">Shipping: </span>
+            <span class="variantsub">$ {product.shippingcharges}.00</span>
+          </div>
+          {/* <div class="subvariant">
             <span class="varianthead">brand: </span>
             <span class="variantsub">{brand}</span>
-          </div>
+          </div> */}
         </div>
         {/* {shipping === "Yes" && (
           <div class="subvariant">
@@ -175,11 +179,11 @@ export default function ProductCardOnCart({
         )} */}
       </div>
       <div class="cartpropricedetails">
-        {disprice ? (
+        {disprice !== null ? (
           <div className="cartpricebinder">
-            <div class="cartproprice">Rs {disprice}.00</div>
+            <div class="cartproprice">$ {disprice}.00</div>
             <div class="cartprocutcont">
-              <div class="cartpropricelist">Rs {price}.00</div>
+              <div class="cartpropricelist">$ {price}.00</div>
               <div class="dis-persontage">
                 {" "}
                 -{(100 - (disprice / price) * 100).toFixed(0)}%{" "}
@@ -187,7 +191,7 @@ export default function ProductCardOnCart({
             </div>
           </div>
         ) : (
-          <div class="cartproprice">Rs {price}.00</div>
+          <div class="cartproprice">$ {price}.00</div>
         )}
 
         <div class="cartprobtns">
