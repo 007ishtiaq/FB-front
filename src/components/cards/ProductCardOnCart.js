@@ -13,19 +13,12 @@ export default function ProductCardOnCart({
 }) {
   const {
     title,
-    slug,
     images,
-    description,
     disprice,
+    shippingcharges,
     price,
-    brand,
     color,
-    shipping,
-    category,
-    subs,
-    subs2,
     quantity,
-    sold,
     count,
   } = product;
 
@@ -59,7 +52,7 @@ export default function ProductCardOnCart({
 
       // remove the coupon of value of card get below to coupon condition
       let totalofCart = cart.reduce((currentValue, nextValue) => {
-        if (nextValue.disprice > 0) {
+        if (nextValue.disprice >= 0) {
           return currentValue + nextValue.count * nextValue.disprice;
         } else {
           return currentValue + nextValue.count * nextValue.price;
@@ -128,7 +121,7 @@ export default function ProductCardOnCart({
 
         // remove the coupon of value of card get below to coupon condition
         let totalofCart = cart.reduce((currentValue, nextValue) => {
-          if (nextValue.disprice > 0) {
+          if (nextValue.disprice >= 0) {
             return currentValue + nextValue.count * nextValue.disprice;
           } else {
             return currentValue + nextValue.count * nextValue.price;
@@ -164,7 +157,7 @@ export default function ProductCardOnCart({
           </div>
           <div class="subvariant">
             <span class="varianthead">Shipping: </span>
-            <span class="variantsub">$ {product.shippingcharges}.00</span>
+            <span class="variantsub">$ {shippingcharges}.00</span>
           </div>
           {/* <div class="subvariant">
             <span class="varianthead">brand: </span>

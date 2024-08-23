@@ -81,11 +81,17 @@ const Cart = ({ history }) => {
 
   const getTotal = () => {
     return cart.reduce((currentValue, nextValue) => {
-      if (nextValue.disprice > 0) {
+      if (nextValue.disprice >= 0) {
         return currentValue + nextValue.count * nextValue.disprice;
       } else {
         return currentValue + nextValue.count * nextValue.price;
       }
+    }, 0);
+  };
+
+  const getTotalShipping = () => {
+    return cart.reduce((currentValue, nextValue) => {
+      return currentValue + nextValue.shippingcharges;
     }, 0);
   };
 
@@ -435,7 +441,7 @@ const Cart = ({ history }) => {
 
               <div class="amtcont">
                 <span> Shipping fee </span>
-                <span> $ {shippingfee ? shippingfee : 0}.00 </span>
+                <span> $ {getTotalShipping()}.00 </span>
               </div>
 
               {discountPersent !== null && (
