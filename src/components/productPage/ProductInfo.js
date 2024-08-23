@@ -9,7 +9,6 @@ import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 // import { useHistory } from "react-router-dom";
 import { addToWishlist, getWishlist } from "../../functions/user";
-import { getShippings } from "../../functions/shipping";
 import { saveUserAddress, getUserAddress } from "../../functions/user";
 import { checkFlash } from "../../functions/product";
 import ProductsSlider from "../productsSlidable/productSlider/ProductsSlider";
@@ -40,7 +39,6 @@ export default function ProductInfo({ product, similarProduct }) {
     color,
     category,
     attributes,
-    weight,
     quantity,
     sold,
     onSale,
@@ -49,7 +47,6 @@ export default function ProductInfo({ product, similarProduct }) {
   const [qty, setQty] = useState(1);
   const [isLiked, setisLiked] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [shippingfee, setShippingfee] = useState("");
   const [saleTime, setSaleTime] = useState("");
 
   // redux
@@ -57,10 +54,6 @@ export default function ProductInfo({ product, similarProduct }) {
 
   const history = useHistory();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    CalcShipping();
-  }, [title]);
 
   useEffect(() => {
     checkprodFlash();
@@ -134,28 +127,6 @@ export default function ProductInfo({ product, similarProduct }) {
       return result.toFixed(1);
     }
   }
-
-  const CalcShipping = () => {
-    getShippings().then(async (res) => {
-      let shippings = res.data;
-
-      if (title) {
-        let shippingCharges = "";
-
-        for (let i = 0; i < shippings.length; i++) {
-          if (
-            weight <= shippings[i].weightend &&
-            weight >= shippings[i].weightstart
-          ) {
-            shippingCharges = shippings[i].charges;
-          }
-        }
-        setShippingfee(shippingCharges);
-      } else {
-        setShippingfee(0);
-      }
-    });
-  };
 
   const handleAddToCart = () => {
     if (product.quantity < 1) {
@@ -640,9 +611,7 @@ export default function ProductInfo({ product, similarProduct }) {
                   ${" "}
                   {shippingcharges > 0
                     ? `${shippingcharges}.00`
-                    : shippingcharges === 0
-                    ? "FREE SHIPPING"
-                    : `${shippingfee}.00`}
+                    : "FREE SHIPPING"}
                 </span>
               ) : (
                 <Skeleton width={50} count={1} />
