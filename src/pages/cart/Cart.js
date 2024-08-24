@@ -91,7 +91,11 @@ const Cart = ({ history }) => {
 
   const getTotalShipping = () => {
     return cart.reduce((currentValue, nextValue) => {
-      return currentValue + nextValue.shippingcharges;
+      if (nextValue.disprice === 0) {
+        return currentValue + nextValue.shippingcharges * nextValue.count;
+      } else {
+        return currentValue + nextValue.shippingcharges;
+      }
     }, 0);
   };
 
