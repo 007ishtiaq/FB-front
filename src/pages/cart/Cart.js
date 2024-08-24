@@ -20,7 +20,6 @@ import {
   validateCoupon,
   getUserCart,
 } from "../../functions/user";
-import { getShippings } from "../../functions/shipping";
 import { toast } from "react-hot-toast";
 import { Tooltip } from "antd";
 import NoNetModal from "../../components/NoNetModal/NoNetModal";
@@ -31,8 +30,6 @@ const Cart = ({ history }) => {
   const [couponType, setCouponType] = useState(null);
   const [discountPersent, setDiscountPersent] = useState(null);
   const [couponCondition, setCouponCondition] = useState(null);
-  const [shippingfee, setShippingfee] = useState(0);
-  const [totalWeight, setTotalWeight] = useState("");
   const [noNetModal, setNoNetModal] = useState(false);
   const [retryFunction, setRetryFunction] = useState("");
 
@@ -75,10 +72,6 @@ const Cart = ({ history }) => {
     }
   }, [user, coupon]);
 
-  useEffect(() => {
-    CalcShipping();
-  }, [totalWeight, cart]);
-
   const getTotal = () => {
     return cart.reduce((currentValue, nextValue) => {
       if (nextValue.disprice >= 0) {
@@ -99,39 +92,6 @@ const Cart = ({ history }) => {
     }, 0);
   };
 
-  const CalcShipping = () => {
-    getShippings().then(async (res) => {
-      let shippings = res.data;
-
-      if (cart.length > 0) {
-        const totalWeight = await cart.reduce((currentValue, nextValue) => {
-          return currentValue + nextValue.weight * nextValue.count;
-        }, 0);
-
-        let shippingCharges = "";
-
-        for (let i = 0; i < shippings.length; i++) {
-          if (
-            totalWeight <= shippings[i].weightend &&
-            totalWeight >= shippings[i].weightstart
-          ) {
-            shippingCharges = shippings[i].charges;
-          }
-        }
-        setShippingfee(shippingCharges);
-      } else {
-        setShippingfee(0);
-      }
-    });
-  };
-
-  const calctotalweight = () => {
-    const totalWeight = cart.reduce((currentValue, nextValue) => {
-      return currentValue + nextValue.weight * nextValue.count;
-    }, 0);
-    setTotalWeight(totalWeight);
-  };
-
   const emptyCart = () => {
     const userConfirmed = window.confirm(
       "Are you sure you want to empty the cart?"
@@ -139,8 +99,6 @@ const Cart = ({ history }) => {
 
     if (userConfirmed) {
       if (typeof window !== "undefined") localStorage.removeItem("cart");
-
-      CalcShipping();
 
       removeDiscountCoupon();
 
@@ -381,7 +339,6 @@ const Cart = ({ history }) => {
                   <ProductCardOnCart
                     key={p._id}
                     product={p}
-                    calctotalweight={calctotalweight}
                     removeDiscountCoupon={removeDiscountCoupon}
                     couponCondition={couponCondition}
                     getTotal={getTotal}
@@ -475,7 +432,7 @@ const Cart = ({ history }) => {
                   )}
                   {couponType === "Shipping" && (
                     <span>
-                      $ -{shippingfee}
+                      $ -{getTotalShipping()}
                       .00{" "}
                     </span>
                   )}
@@ -499,25 +456,25 @@ const Cart = ({ history }) => {
                         ${" "}
                         {getTotal() -
                           (getTotal() * discountPersent) / 100 +
-                          shippingfee}
+                          getTotalShipping()}
                         .00{" "}
                       </span>
                     )}
                     {couponType === "Cash" && (
                       <span>
-                        $ {getTotal() - discountPersent + shippingfee}
+                        $ {getTotal() - discountPersent + getTotalShipping()}
                         .00{" "}
                       </span>
                     )}
                     {couponType === "Shipping" && (
                       <span>
-                        $ {getTotal() - shippingfee + shippingfee}
+                        $ {getTotal() - getTotalShipping() + getTotalShipping()}
                         .00{" "}
                       </span>
                     )}
                   </>
                 ) : (
-                  <span> $ {getTotal() + shippingfee}.00 </span>
+                  <span> $ {getTotal() + getTotalShipping()}.00 </span>
                 )}
               </div>
               {user ? (

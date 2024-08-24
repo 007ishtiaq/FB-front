@@ -6,7 +6,6 @@ import laptop from "../../images/laptop.png";
 
 export default function ProductCardOnCart({
   product,
-  calctotalweight,
   removeDiscountCoupon,
   couponCondition,
   getTotal,
@@ -47,9 +46,6 @@ export default function ProductCardOnCart({
         payload: cart,
       });
 
-      // recalculate shipping
-      await calctotalweight();
-
       // remove the coupon of value of card get below to coupon condition
       let totalofCart = cart.reduce((currentValue, nextValue) => {
         if (nextValue.disprice >= 0) {
@@ -84,9 +80,6 @@ export default function ProductCardOnCart({
         type: "ADD_TO_CART",
         payload: cart,
       });
-
-      // recalculate shipping
-      await calctotalweight();
     }
   };
 
@@ -115,9 +108,6 @@ export default function ProductCardOnCart({
           type: "ADD_TO_CART",
           payload: cart,
         });
-
-        // recalculate shipping
-        calctotalweight();
 
         // remove the coupon of value of card get below to coupon condition
         let totalofCart = cart.reduce((currentValue, nextValue) => {
@@ -179,17 +169,7 @@ export default function ProductCardOnCart({
               )}
             </span>
           </div>
-          {/* <div class="subvariant">
-            <span class="varianthead">brand: </span>
-            <span class="variantsub">{brand}</span>
-          </div> */}
         </div>
-        {/* {shipping === "Yes" && (
-          <div class="subvariant">
-            <span class="varianthead">Shipping: </span>
-            <span class="variantsub">Free Shipping</span>
-          </div>
-        )} */}
       </div>
       <div class="cartpropricedetails">
         {disprice !== null ? (
@@ -206,6 +186,8 @@ export default function ProductCardOnCart({
         ) : (
           <div class="cartproprice">$ {price}.00</div>
         )}
+        {JSON.stringify(getTotal())}
+        {JSON.stringify(couponCondition)}
 
         <div class="cartprobtns">
           <div onClick={handleRemove} class="cartprodel">
