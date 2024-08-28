@@ -186,9 +186,6 @@ export default function ProductCardOnCart({
         ) : (
           <div class="cartproprice">$ {price}.00</div>
         )}
-        {JSON.stringify(getTotal())}
-        {JSON.stringify(couponCondition)}
-
         <div class="cartprobtns">
           <div onClick={handleRemove} class="cartprodel">
             <Deletesvg />
