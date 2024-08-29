@@ -162,7 +162,7 @@ const Orders = ({ orders }) => {
                         <th class="ordli">Customer Name</th>
                         <th class="ordli">Order Place On</th>
                         <th class="ordli">Shipping Address</th>
-                        <th class="ordli">Mode or payment</th>
+                        <th class="ordli">Mode of payment</th>
                         <th class="ordli">Total Value</th>
                         <th class="ordli">Payment</th>
                         <th class="ordli">Delivered</th>
@@ -189,7 +189,12 @@ const Orders = ({ orders }) => {
                           </td>
                           <td class="ordli">{order.paymentStatus}</td>
                           <td class="ordli">
-                            Rs. {order.paymentIntent.amount}.00
+                            ${" "}
+                            {order.paymentIntent.discounted > 0
+                              ? order.paymentIntent.amount -
+                                order.paymentIntent.discounted
+                              : order.paymentIntent.amount}
+                            .00
                           </td>
                           <td class="ordli">
                             {order.isPaid ? (
@@ -258,7 +263,14 @@ const Orders = ({ orders }) => {
                         {order.shippingto.City}
                       </td>
                       <td class="ordli">{order.paymentStatus}</td>
-                      <td class="ordli">Rs. {order.paymentIntent.amount}.00</td>
+                      <td class="ordli">
+                        ${" "}
+                        {order.paymentIntent.discounted > 0
+                          ? order.paymentIntent.amount -
+                            order.paymentIntent.discounted
+                          : order.paymentIntent.amount}
+                        .00
+                      </td>
                       <td className="ordli">
                         <Link to={`/admin/order/${order._id}`}>
                           <div

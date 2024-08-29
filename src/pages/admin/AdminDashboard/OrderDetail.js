@@ -18,7 +18,6 @@ import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { getOrder } from "../../../functions/user";
 import { getActionInfo } from "../../../functions/admin";
-import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import OrderEditModal from "../../../components/modal/OrderEditModal";
 import OrderEditForm from "../../../components/forms/OrderEditForm";
 import ItemActioninfoModel from "../../../components/modal/ItemActioninfoModel";
@@ -562,9 +561,9 @@ export default function OrderDetail({ match }) {
                         <th class="ordli">Item</th>
                         <th class="ordli">Brand</th>
                         <th class="ordli">Color</th>
-                        <th class="ordli">Shipping</th>
                         <th class="ordli">Price</th>
                         <th class="ordli">Quantity</th>
+                        <th class="ordli">Shipping</th>
                         <th class="ordli">Total</th>
                       </tr>
                     </thead>
@@ -648,16 +647,14 @@ export default function OrderDetail({ match }) {
                           </td>
                           <td class="ordli">{p.product.brand}</td>
                           <td class="ordli">{p.color}</td>
-                          <td class="ordli">
-                            {p.product.shipping === "Yes" ? (
-                              <CheckCircleOutlined style={{ color: "green" }} />
-                            ) : (
-                              <CloseCircleOutlined style={{ color: "red" }} />
-                            )}
-                          </td>
-                          <td class="ordli">Rs. {p.price}.00</td>
+                          <td class="ordli">$ {p.price}.00</td>
                           <td class="ordli">{p.count}</td>
-                          <td class="ordli">Rs. {p.price * p.count}.00</td>
+                          <td class="ordli">
+                            {p.price >= 1
+                              ? p.product.shippingcharges
+                              : p.product.shippingcharges * p.count}
+                          </td>
+                          <td class="ordli">$ {p.price * p.count}.00</td>
                         </tr>
                       ))}
                     </tbody>
@@ -695,7 +692,11 @@ export default function OrderDetail({ match }) {
                       <span>
                         Total {order.isPaid ? "Paid" : "Payable"}:{" "}
                         {order.paymentIntent.currency}{" "}
-                        {order.paymentIntent.amount}.00
+                        {order.paymentIntent.discounted > 0
+                          ? order.paymentIntent.amount -
+                            order.paymentIntent.discounted
+                          : order.paymentIntent.amount}
+                        .00
                       </span>
                     </li>
                   </ul>

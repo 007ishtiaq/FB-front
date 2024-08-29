@@ -93,7 +93,7 @@ const CreateCouponPage = () => {
 
         <div className="form-group">
           <label className="text-muted">
-            Coupon Condition (Flat , Min cart value) [- or ~]
+            Coupon Condition (Flat , Min cart value) [empty for flat or ~]
           </label>
           <input
             type="text"

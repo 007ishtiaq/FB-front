@@ -410,11 +410,11 @@ const Checkout = ({ history }) => {
             <div class="summarysubcont">
               <div class="amtcont">
                 <span> Subtotal </span>
-                <span> Rs. {total}.00 </span>
+                <span> $ {total}.00 </span>
               </div>
               <div class="amtcont">
                 <span> Shipping fee </span>
-                <span> Rs. {shippingfee}.00 </span>
+                <span> $ {shippingfee}.00 </span>
               </div>
               {discounted > 0 && (
                 <div class="amtcont">
@@ -424,13 +424,13 @@ const Checkout = ({ history }) => {
                     {couponType !== null && (
                       <div className="coupontypetxt">
                         {couponType === "Discount" && `${discountPersent}% Off`}
-                        {couponType === "Cash" && `Rs.${discountPersent} Off`}
+                        {couponType === "Cash" && `$ ${discountPersent} Off`}
                         {couponType === "Shipping" && `Zero Shipping`}
                       </div>
                     )}
                   </span>
                   <span>
-                    Rs. -{discounted}
+                    $ -{discounted}
                     .00
                   </span>
                 </div>
@@ -438,9 +438,9 @@ const Checkout = ({ history }) => {
               <div class="totalamt amtcont">
                 <span> Total </span>
                 {totalAfterDiscount > 0 ? (
-                  <span>Rs. {totalAfterDiscount}.00</span>
+                  <span>$ {totalAfterDiscount}.00</span>
                 ) : (
-                  <span> Rs. {total + shippingfee}.00 </span>
+                  <span> $ {total + shippingfee}.00 </span>
                 )}
               </div>
               {COD ? (
