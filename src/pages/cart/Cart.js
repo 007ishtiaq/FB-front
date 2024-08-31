@@ -74,7 +74,7 @@ const Cart = ({ history }) => {
 
   const getTotal = () => {
     return cart.reduce((currentValue, nextValue) => {
-      if (nextValue.disprice >= 0) {
+      if (nextValue.disprice !== null) {
         return currentValue + nextValue.count * nextValue.disprice;
       } else {
         return currentValue + nextValue.count * nextValue.price;
