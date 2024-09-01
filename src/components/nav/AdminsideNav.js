@@ -74,6 +74,20 @@ export default function AdminsideNav() {
         </Link>
       </ul>
       <Link
+        to="/AdminPanel?page=AllProducts"
+        class="manageacheading clsremove AllProducts"
+      >
+        All products
+      </Link>
+      <ul class="manageacul">
+        <Link to="/AdminPanel?page=ProductCreate">
+          <li class="manageacli clsremove ProductCreate">Create Product</li>
+        </Link>
+        <Link to="/AdminPanel?page=FlashSale">
+          <li class="manageacli clsremove FlashSale">Flash sale</li>
+        </Link>
+      </ul>
+      <Link
         to="/AdminPanel?page=Transections"
         class="manageacheading clsremove Transections"
       >
@@ -103,20 +117,7 @@ export default function AdminsideNav() {
           <li class="manageacli clsremove OptinEmails">Opt-In Emails</li>
         </Link>
       </ul>
-      <Link
-        to="/AdminPanel?page=AllProducts"
-        class="manageacheading clsremove AllProducts"
-      >
-        All products
-      </Link>
-      <ul class="manageacul">
-        <Link to="/AdminPanel?page=ProductCreate">
-          <li class="manageacli clsremove ProductCreate">Create Product</li>
-        </Link>
-        <Link to="/AdminPanel?page=FlashSale">
-          <li class="manageacli clsremove FlashSale">Flash sale</li>
-        </Link>
-      </ul>
+
       <Link
         to="/AdminPanel?page=CategoryCreate"
         class="manageacheading clsremove CategoryCreate"

@@ -128,7 +128,7 @@ export default function OrderDetail({ match }) {
       ItemName: Item.product.title,
       Brand: Item.product.brand,
       Color: Item.color,
-      Shipping: 0,
+      Shipping: Item.product.shippingcharges,
       Price: Item.price,
       Quantity: Item.count,
       totalqty: Item.product.quantity,
@@ -240,9 +240,7 @@ export default function OrderDetail({ match }) {
         })
         .catch((err) => {
           console.log(err);
-          toast.error(
-            `Order Edit not Allowed, Order Status is "Cancelled Or Returned"`
-          );
+          toast.error(`Edit not Allowed, Somthing Went worng`);
         });
     }
   };
@@ -562,9 +560,10 @@ export default function OrderDetail({ match }) {
                         <th class="ordli">Brand</th>
                         <th class="ordli">Color</th>
                         <th class="ordli">Price</th>
+                        <th class="ordli">shipping</th>
                         <th class="ordli">Quantity</th>
-                        <th class="ordli">Shipping</th>
-                        <th class="ordli">Total</th>
+                        <th class="ordli">Total Shipping</th>
+                        <th class="ordli">Total Amount</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -648,6 +647,9 @@ export default function OrderDetail({ match }) {
                           <td class="ordli">{p.product.brand}</td>
                           <td class="ordli">{p.color}</td>
                           <td class="ordli">$ {p.price}.00</td>
+                          <td class="ordli">
+                            $ {p.product.shippingcharges}.00
+                          </td>
                           <td class="ordli">{p.count}</td>
                           <td class="ordli">
                             {p.price >= 1
@@ -692,10 +694,7 @@ export default function OrderDetail({ match }) {
                       <span>
                         Total {order.isPaid ? "Paid" : "Payable"}:{" "}
                         {order.paymentIntent.currency}{" "}
-                        {order.paymentIntent.discounted > 0
-                          ? order.paymentIntent.amount -
-                            order.paymentIntent.discounted
-                          : order.paymentIntent.amount}
+                        {order.paymentIntent.amount}
                         .00
                       </span>
                     </li>

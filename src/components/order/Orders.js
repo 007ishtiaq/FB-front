@@ -161,7 +161,6 @@ const Orders = ({ orders }) => {
                         <th class="ordli">Order ID</th>
                         <th class="ordli">Customer Name</th>
                         <th class="ordli">Order Place On</th>
-                        <th class="ordli">Shipping Address</th>
                         <th class="ordli">Mode of payment</th>
                         <th class="ordli">Total Value</th>
                         <th class="ordli">Payment</th>
@@ -183,17 +182,9 @@ const Orders = ({ orders }) => {
                             ) && <div className="rtncircle"></div>}
                           </td>
                           <td class="ordli">{showMoment(date)}</td>
-                          <td class="ordli">
-                            {order.shippingto.Address}
-                            {order.shippingto.City}
-                          </td>
                           <td class="ordli">{order.paymentStatus}</td>
                           <td class="ordli">
-                            ${" "}
-                            {order.paymentIntent.discounted > 0
-                              ? order.paymentIntent.amount -
-                                order.paymentIntent.discounted
-                              : order.paymentIntent.amount}
+                            $ {order.paymentIntent.amount}
                             .00
                           </td>
                           <td class="ordli">
