@@ -681,7 +681,7 @@ export default function OrderDetail({ match }) {
                                 "Discount" &&
                                 `${order.paymentIntent.dispercent}% Off`}
                               {order.paymentIntent.discountType === "Cash" &&
-                                `Rs.${order.paymentIntent.dispercent} Off`}
+                                `$ ${order.paymentIntent.dispercent} Off`}
                               {order.paymentIntent.discountType ===
                                 "Shipping" && `Zero Shipping`}
                             </div>

@@ -393,7 +393,7 @@ export default function OrderDetails({ match }) {
                     <div class="orderdetailsummary">
                       <span> Subtotal </span>
                       <span>
-                        Rs. {getSubTotal()}
+                        $ {getSubTotal()}
                         .00
                       </span>
                     </div>
@@ -401,7 +401,7 @@ export default function OrderDetails({ match }) {
                       <span> Shipping fee </span>
                       <span>
                         {" "}
-                        Rs. {order.shippingfee}
+                        $ {order.shippingfee}
                         .00{" "}
                       </span>
                     </div>
@@ -416,13 +416,13 @@ export default function OrderDetails({ match }) {
                                 "Discount" &&
                                 `${order.paymentIntent.dispercent}% Off`}
                               {order.paymentIntent.discountType === "Cash" &&
-                                `Rs.${order.paymentIntent.dispercent} Off`}
+                                `$ ${order.paymentIntent.dispercent} Off`}
                               {order.paymentIntent.discountType ===
                                 "Shipping" && `Zero Shipping`}
                             </div>
                           )}
                         </span>
-                        <span> Rs. -{order.paymentIntent.discounted}.00 </span>
+                        <span> $ -{order.paymentIntent.discounted}.00 </span>
                       </div>
                     )}
                     <hr />
@@ -430,7 +430,7 @@ export default function OrderDetails({ match }) {
                       <span> Total Payment: </span>{" "}
                       <span>
                         {" "}
-                        Rs. {order && order.paymentIntent.amount}
+                        $ {order && order.paymentIntent.amount}
                         .00
                       </span>
                     </div>
