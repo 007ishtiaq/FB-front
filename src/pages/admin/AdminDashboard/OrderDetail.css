@@ -313,6 +313,10 @@ tr td {
   border: 1px solid red;
   background: red;
 }
+.ant-modal-footer {
+  display: flex;
+  justify-content: right;
+}
 /* ------------status styling  copied same as it is   (end)--------- */
 /* ------------status styling  my change--------- */
 .orderstatusbarcontadmin {
